@@ -12,68 +12,17 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @WebServlet(name = "Download", value = "/Download")
-public class FileDownloadServlet extends HttpServlet { //20130230-Tran trung dong
+public class FileDownloadServlet extends HttpServlet {
 
-//    @Override
-//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        resp.setContentType("text/html;charset=UTF-8");
-//        try (PrintWriter out = resp.getWriter()) {
-//            String path = req.getServletContext().getRealPath("/") +File.separator + "tool" + File.separator + "Petshop_website_final_war.jar";
-//            System.out.println("path: "+path);
-//            System.out.println(req.getServletContext().getRealPath("/") +File.separator + "tool" + File.separator + "Petshop_website_final_war.jar");
-//
-//            File dwFile = new File(path);
-//            if (dwFile.exists()) {
-//                resp.setContentType("application/octet-stream");
-//                resp.setContentLength((int) dwFile.length());
-//                String hkey = "Content-Disposition";
-//                String hvelue = String.format("attachment; filenme=\"%s\"", dwFile.getName());
-//                resp.setHeader(hkey, hvelue);
-//                FileInputStream in = new FileInputStream(dwFile);
-//                int i;
-//                while ((i = in.read()) != -1) {
-//                    out.write(i);
-//                }
-//                in.close();
-//                out.close();
-//            } else {
-//                System.out.println("file khong ton tai");
-//            }
-//        }
-//    }
-
-    //    protected void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        resp.setContentType("text/html;charset=UTF-8");
-//        try (PrintWriter out = resp.getWriter()) {
-//            String path = "src\\main\\webapp\\tool\\Petshop_website_final_war.jar";
-//            File dwFile = new File(path);
-//            if (dwFile.exists()) {
-//                resp.setContentType("application/octet-stream");
-//                resp.setContentLength((int) dwFile.length());
-//                String hkey = "Content-Disposition";
-//                String hvelue = String.format("attachment; filenme=\"%s\"", dwFile.getName());
-//                resp.setHeader(hkey, hvelue);
-//                FileInputStream in = new FileInputStream(dwFile);
-//                int i;
-//                while ((i = in.read()) != -1) {
-//                    out.write(i);
-//                }
-//                in.close();
-//                out.close();
-//            } else {
-//                System.out.println("file khong ton tai");
-//            }
-//        }
-//    }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext context = getServletContext();
-        String fpath = request.getServletContext().getRealPath("/") +File.separator + "tool" + File.separator + "Petshop_website_final_war.jar";
+        String fpath = request.getServletContext().getRealPath("/") +File.separator + "tool" + File.separator + "Tool cuoi ky.zip";
         System.out.println(fpath);
         Path path = Paths.get(fpath);
         byte[] data = Files.readAllBytes(path);
         // Thiết lập thông tin trả về
         response.setContentType("application/octet-stream");
-        response.setHeader("Content-disposition", "attachment; filename=Petshop_website_final_war.jar");
+        response.setHeader("Content-disposition", "attachment; filename=Tool cuoi ky.zip");
         response.setContentLength(data.length);
         InputStream inputStream = new BufferedInputStream(new ByteArrayInputStream(data));
         // Ghi file ra response outputstream.
