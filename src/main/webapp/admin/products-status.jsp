@@ -271,7 +271,7 @@
                                     <th>Xác thực</th>
                                     <th></th>
                                     <th></th>
-                                </tr>d
+                                </tr>
                                 </thead>
                                 <tbody>
                                 <% NumberFormat format = NumberFormat.getInstance(new Locale("vn", "VN"));
