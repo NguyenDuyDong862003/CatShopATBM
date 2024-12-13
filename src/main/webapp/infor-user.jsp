@@ -243,7 +243,8 @@
         }
 
         .bt2 {
-            background-color: #007bff;
+            /*background-color: #007bff;*/
+            background-color: #0b5ed7;
             border-radius: 5px;
             width: 90px;
             padding: 7px;
@@ -259,8 +260,9 @@
             left: 50%;
             transform: translate(-50%, -50%);
             padding: 20px;
-            background-image: url(img/breadcrumb.jpg);
-            background-position: top right;
+            /*background-image: url(img/breadcrumb.jpg);*/
+            /*background-position: top right;*/
+            background-color: #0d95e8;
             z-index: 1;
             border-radius: 10px;
             border: 1px black;
@@ -509,6 +511,8 @@
                     <%if(isValidKey){%>
                     <span class="font-weight-bold">Đã xác nhận khóa (*)</span>
                     <span class="font-weight-bold" style="color: red; background-color: yellow;" onclick="showTablerb()"> Báo cáo khóa đã bị lộ (*)</span>
+
+
                     <div id="myTablerb">
                         <label style="text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white">Xác nhận khóa của bạn đã bị lộ</label>
                         <div id="errorrb" style="text-align: center; color: red"></div> <br>
@@ -517,11 +521,11 @@
                     <%}else {%>
                     <span class="font-weight-bold" style="color: red">Vui lòng xác nhận khóa (*)</span>
                     <div class="button-container">
-                        <div class="bt1" onclick="showTableK()" >Xác nhận</div>
-                        <div class="bt1" onclick="createKey()" >Tạo Khóa</div>
+                        <div class="bt1" onclick="showTableK()" >Upload khóa công khai mới</div>
+                        <%--                        <div class="bt1" onclick="createKey()" >Tạo Khóa</div>--%>
                     </div>
                     <div id="myTableTK">
-                        <label style="text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white">Khóa riêng tư (dùng để ký đơn hàng)</label>
+                        <label style="text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white">Đây là private key mà server tạo ra cho bạn, server đã lưu lại public key rồi</label>
                         <div>
                             <input type="text" id="privateKey">
                             <span id="copyIcon" onclick="copyToClipboard()">📋</span>
@@ -531,14 +535,15 @@
                         <div onclick="hideTableTK()" class="bt2">Đóng</div>
                     </div>
                     <div id="myTableK">
-                        <label style="text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white">Khóa công khai</label>
+                        <label style="text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white">Upload new public key</label>
                         <input type="text" id="publicKey"><br>
-                        <div id="errorK" style="text-align: center; color: red"></div> <br>
+                        <p style="color: white;">(*) Hướng dẫn: Mở tool lên, ở phần "Tạo và lưu cặp khóa DSA" bấm nút "Gen new pair key", copy public key được tạo vào hộp input trên. Dùng nút lưu trên tool để lưu lại cặp khóa, và bạn phải tuyệt đối giữ kín private key.</p>
+                        <div id="errorK" style="text-align: center; color: white; font-size: 24px; font-weight: 900; -webkit-text-stroke: 1px red; "></div> <br>
                         <div onclick="hideTableK()" class="bt2">Hủy</div>
                         <div onclick="updateKey()" class="bt2">Cập nhật</div>
                     </div>
                     <%}%>
-                    <%--   20130252-Trần Nhựt Hào     --%>
+
                 </div>
             </div>
             <div class="col-md-5 border-right">
@@ -677,7 +682,7 @@
                 console.error('Failed to copy text: ', err);
             });
     }
-    function updateKey() { //20130252-Trần Nhựt Hào
+    function updateKey() {
         var publicKey = document.getElementById("publicKey").value;
         if (publicKey.trim() === "") {
             document.getElementById("errorK").innerText = "Khóa không được để trống";
@@ -686,7 +691,7 @@
             checkKey(publicKey);
         }
     }
-    function checkKey(publicKey){//20130252-Trần Nhựt Hào
+    function checkKey(publicKey){
         var xmlhttp = new XMLHttpRequest();
 
         // Xác định phương thức và URL của servlet
@@ -716,19 +721,19 @@
         // Gửi yêu cầu đến servlet
         xmlhttp.send(params);
     }
-    function showTablerb(){//20130230-Trần trung đông
+    function showTablerb(){
         document.getElementById("myTablerb").style.display = "block";
         document.getElementById("overlayT").classList.add("show");
         document.getElementById("overlayT").addEventListener("click", hideTableOnClickOutsiderb);
     }
-    function hideTablerb() {//20130230-Trần trung đông
+    function hideTablerb() {
         document.getElementById("myTablerb").style.display = "none";
         document.getElementById("overlayT").classList.remove("show");
         document.getElementById("overlayT").removeEventListener("click", hideTableOnClickOutsiderb);
         window.location.reload();
         reportKey();
     }
-    function hideTableOnClickOutsiderb(event) {//20130230-Trần trung đông
+    function hideTableOnClickOutsiderb(event) {
         var myTablerb = document.getElementById("myTablerb");
         // Kiểm tra xem phần tử được click có phải là myTablerb không
         if (!myTablerb.contains(event.target)) {
@@ -736,7 +741,7 @@
             window.location.reload();
         }
     }
-    function reportKey() {//20130230-Trần trung đông
+    function reportKey() {
         // Tạo đối tượng XMLHttpRequest
         var xhr = new XMLHttpRequest();
 
@@ -756,12 +761,12 @@
         // Gửi yêu cầu
         xhr.send();
     }
-    function showTableK() {//20130252-Trần Nhựt Hào
+    function showTableK() {
         document.getElementById("myTableK").style.display = "block";
         document.getElementById("overlayT").classList.add("show");
         document.getElementById("overlayT").addEventListener("click", hideTableOnClickOutside);
     }
-    function hideTableOnClickOutside(event) {//20130252-Trần Nhựt Hào
+    function hideTableOnClickOutside(event) {
         var myTableK = document.getElementById("myTableK");
 
         // Kiểm tra xem phần tử được click có phải là myTableCK không
@@ -769,12 +774,12 @@
             hideTableK();
         }
     }
-    function hideTableK() {//20130252-Trần Nhựt Hào
+    function hideTableK() {
         document.getElementById("myTableK").style.display = "none";
         document.getElementById("overlayT").classList.remove("show");
         document.getElementById("overlayT").removeEventListener("click", hideTableOnClickOutside);
     }
-    function createKey(){//20130252-Trần Nhựt Hào
+    function createKey(){
         // Gửi yêu cầu AJAX đến Servlet
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
@@ -789,12 +794,12 @@
         xhr.open("GET", "CreateKeyController", true);
         xhr.send();
     }
-    function showTableTK() {//20130252-Trần Nhựt Hào
+    function showTableTK() {
         document.getElementById("myTableTK").style.display = "block";
         document.getElementById("overlayT").classList.add("show");
         document.getElementById("overlayT").addEventListener("click", hideTableOnClickOutsideTK);
     }
-    function hideTableOnClickOutsideTK(event) {//20130252-Trần Nhựt Hào
+    function hideTableOnClickOutsideTK(event) {
         var myTableTK = document.getElementById("myTableTK");
         // Kiểm tra xem phần tử được click có phải là myTableTK không
         if (!myTableTK.contains(event.target)) {
@@ -802,7 +807,7 @@
             window.location.reload();
         }
     }
-    function hideTableTK() {//20130252-Trần Nhựt Hào
+    function hideTableTK() {
         document.getElementById("myTableTK").style.display = "none";
         document.getElementById("overlayT").classList.remove("show");
         document.getElementById("overlayT").removeEventListener("click", hideTableOnClickOutsideTK);
@@ -934,7 +939,7 @@
 </script>
 <script>
 
-    const EMAIL = "20130266@st.hcmuaf.edu.vn";
+    const EMAIL = "21130318@st.hcmuaf.edu.vn";
     const PASSWORD = "123456";
     const WARD = "90737";
     const DISTRICT = "3695";
