@@ -19,7 +19,7 @@ public class KeyDAO {
             throw new SQLException("Unable to connect to the database.", e);
         }
     }
-    public PublicKey getPublicKey(String userID, String date){ // 20130260-Hoàng Trung Hiếu
+    public PublicKey getPublicKey(String userID, String date){
         try {
             Connection connection = connectDB();
             String sql = "SELECT * FROM public_key WHERE user_id = ? AND (created_at < ? AND expired_at > ?) ";
@@ -40,7 +40,7 @@ public class KeyDAO {
         }
         return null;
     }
-    public boolean isValidKey(String userID) { // 20130252-Trần Nhựt Hào
+    public boolean isValidKey(String userID) {
         Map<String, String> map = new HashMap<>();
         try (Connection connection = connectDB()) {
             // Tạo câu truy vấn SQL với PreparedStatement

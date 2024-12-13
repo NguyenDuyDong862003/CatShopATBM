@@ -7,13 +7,7 @@
 <%@ page import="vn.edu.hcmuaf.fit.tool.DSA" %>
 <%@ page import="vn.edu.hcmuaf.fit.beans.PublicKey" %>
 <%@ page import="vn.edu.hcmuaf.fit.dao.KeyDAO" %>
-<%@ page import="vn.edu.hcmuaf.fit.tool.Hash" %><%--
-  Created by IntelliJ IDEA.
-  User: ADMIN
-  Date: 12/18/2023
-  Time: 11:08 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="vn.edu.hcmuaf.fit.tool.Hash" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% NumberFormat format = NumberFormat.getInstance(new Locale("vn", "VN"));
     DSA dsa = new DSA();
@@ -50,7 +44,6 @@
         <td><%=od.getDeliveryDate()%>
         </td>
         <%}%>
-
         <td>
             <%if (od.getVerify() == 0) {%>
             <div style="color: #00BFFF; font-weight: bold">Chưa xác thực</div>
@@ -73,7 +66,6 @@
             <%if (od.getVerify() == 0) {%>
             <a style="background-color:#35ff00;" class="btn_2 edit btn btn-primary verify"
                type="submit"
-            <%--                                               href="/Petshop_website_final_war/VerifyOrderController?orderId=<%=od.getOrderID()%>"--%>
                id="orderId=<%=od.getOrderID()%>">
                 Xác thực</a>
             <%} else {
@@ -85,25 +77,11 @@
             <%} else {%>
             <a style="background-color:red;" class="btn_2 edit btn btn-primary cancel-order"
                type="submit"
-            <%--href="/Petshop_website_final_war/CancelOrderController?orderId=<%=od.getOrderID()%>"--%>
                id="orderId=<%=od.getOrderID()%>">
                 Hủy đơn</a>
             <%}
             }%>
-
-            <%--                                            <%} else if (od.getVerify() == 1) {%>--%>
-            <%--                                            &lt;%&ndash;                                                        <a style="background-color:#35ff00;" class="btn_2 edit btn btn-primary" type="submit" href="order-detail-ad.jsp?orderId=<%=od.getOrderID()%>">&ndash;%&gt;--%>
-            <%--                                            &lt;%&ndash;                                                            Đã xác thực</a>&ndash;%&gt;--%>
-            <%--                                            <%} else {%>--%>
-            <%--                                            <a style="background-color:red;" class="btn_2 edit btn btn-primary cancel-order"--%>
-            <%--                                               type="submit"--%>
-            <%--&lt;%&ndash;                                               href="/Petshop_website_final_war/CancelOrderController?orderId=<%=od.getOrderID()%>"&ndash;%&gt;--%>
-            <%--                                                id="orderId=<%=od.getOrderID()%>">--%>
-            <%--                                                Hủy đơn</a>--%>
-            <%--                                            <%}%>--%>
         </td>
-
-
     </tr>
 </form>
 <%}%>
