@@ -496,8 +496,20 @@ public class ProductDAO {
     }
 
     public List<Product> listProductSale() {
-        return JDBIConnector.get().withHandle(handle -> handle.createQuery("SELECT p.productId,p.ProductName,p.`Status`,p.Image,p.Price,p.Promotional,p.Quantity,p.Warranty,p.promotional,p.Description,p.Dital,p.CreateBy,p.CreateDate,p.UpdateBy,p.UpdateDate,p.giong,p.mausac,p.cannang,p.size,p.ViewCount FROM product p WHERE `Status`=1 AND Promotional = 1")
-                .mapToBean(Product.class).stream().collect(Collectors.toList()));
+        return JDBIConnector.get().withHandle(handle -> {
+            // Câu truy vấn SQL với cột `Promotional` chỉ xuất hiện một lần
+            String query = "SELECT p.productId, p.ProductName, p.Status, p.Image, p.Price, p.Promotional, p.Quantity, " +
+                    "p.Warranty, p.Description, p.Dital, p.CreateBy, p.CreateDate, p.UpdateBy, p.UpdateDate, " +
+                    "p.giong, p.mausac, p.cannang, p.size, p.ViewCount " +
+                    "FROM product p " +
+                    "WHERE p.Status = 1 AND p.Promotional = 1";
+
+            // Thực thi câu truy vấn và ánh xạ kết quả vào danh sách các đối tượng `Product`
+            return handle.createQuery(query)
+                    .mapToBean(Product.class) // Ánh xạ kết quả thành các đối tượng `Product`
+                    .stream()
+                    .collect(Collectors.toList());
+        });
     }
 
     public List<Product> listRelateTo(String id) {
