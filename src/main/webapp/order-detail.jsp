@@ -5,13 +5,7 @@
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="vn.edu.hcmuaf.fit.beans.UserAccount" %>
-<%@ page import="vn.edu.hcmuaf.fit.services.ProductService" %><%--
-  Created by IntelliJ IDEA.
-  User: Nguyen Ngoc Huy
-  Date: 1/2/2023
-  Time: 12:46 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="vn.edu.hcmuaf.fit.services.ProductService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>

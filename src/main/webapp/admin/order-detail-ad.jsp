@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Nguyen Ngoc Huy
-  Date: 4/8/2023
-  Time: 11:07 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page import="java.util.List" %>
 <%@ page import="vn.edu.hcmuaf.fit.beans.Orders" %>
 <%@ page import="vn.edu.hcmuaf.fit.services.OrderService" %>

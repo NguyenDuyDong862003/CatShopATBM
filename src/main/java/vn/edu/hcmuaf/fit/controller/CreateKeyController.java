@@ -15,7 +15,6 @@ import java.security.NoSuchAlgorithmException;
 @WebServlet(name = "CreateKeyController", value = "/CreateKeyController")
 
 public class CreateKeyController extends HttpServlet {
-    //20130252_Trần Nhựt Hào
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DSA dsa=new DSA();

@@ -95,7 +95,7 @@ public class OrderDAO {
         );
         return list;
     }
-    public void changeStatusVerify(String orderId, int verify) { //20130260-Hoàng Trung Hiếu
+    public void changeStatusVerify(String orderId, int verify) {
         JDBIConnector.get().withHandle(handle -> handle
                 .createUpdate("UPDATE orders SET verify = ? WHERE OrderID = ?")
                 .bind(0, verify)

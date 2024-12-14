@@ -1,12 +1,6 @@
 <%@ page import="vn.edu.hcmuaf.fit.beans.Blogs" %>
 <%@ page import="vn.edu.hcmuaf.fit.dao.BlogDAO" %>
-<%@ page import="java.util.List" %><%--
-  Created by IntelliJ IDEA.
-  User: admin
-  Date: 6/15/2023
-  Time: 2:35 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% List<Blogs> list = (List<Blogs>) request.getAttribute("getNext6Blogs"); %>
                         <%

@@ -1,13 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="vn.edu.hcmuaf.fit.beans.Product" %>
 <%@ page import="java.text.NumberFormat" %>
-<%@ page import="java.util.Locale" %><%--
-  Created by IntelliJ IDEA.
-  User: ADMIN
-  Date: 14/12/2022
-  Time: 5:13 CH
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.Locale" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%List<Product> list = (List<Product>) request.getAttribute("list");%>
 <% NumberFormat format = NumberFormat.getInstance(new Locale("vn", "VN"));%>
