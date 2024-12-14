@@ -6,10 +6,16 @@
 <%@ page import="java.util.Locale" %>
 <%@ page import="vn.edu.hcmuaf.fit.beans.UserAccount" %>
 <%@ page import="vn.edu.hcmuaf.fit.beans.AdminRole" %>
-<%@ page import="vn.edu.hcmuaf.fit.tool.DSA" %>
+<%--<%@ page import="vn.edu.hcmuaf.fit.tool.DSA" %>--%>
 <%@ page import="vn.edu.hcmuaf.fit.beans.PublicKey" %>
 <%@ page import="vn.edu.hcmuaf.fit.dao.KeyDAO" %>
-<%@ page import="vn.edu.hcmuaf.fit.tool.Hash" %>
+<%--<%@ page import="vn.edu.hcmuaf.fit.tool.Hash" %>--%>
+<%@ page import="vn.edu.hcmuaf.fit.tool.src.model.DS" %>
+<%@ page import="vn.edu.hcmuaf.fit.tool.src.model.HashAlgorithms" %>
+<%@ page import="java.security.NoSuchAlgorithmException" %>
+<%@ page import="java.security.spec.InvalidKeySpecException" %>
+<%@ page import="java.security.InvalidKeyException" %>
+<%@ page import="java.security.SignatureException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -271,11 +277,13 @@
                                     <th>Xác thực</th>
                                     <th></th>
                                     <th></th>
-                                </tr>d
+                                </tr>
+                                d
                                 </thead>
                                 <tbody>
                                 <% NumberFormat format = NumberFormat.getInstance(new Locale("vn", "VN"));
-                                    DSA dsa = new DSA();
+//                                    DSA dsa = new DSA();
+                                    DS ds = new DS();
                                 %>
                                 <%
                                     List<Orders> listod = OrderService.getInstance().ordersList();
@@ -313,16 +321,40 @@
                                         <td>
                                             <%if (od.getVerify() == 0) {%>
                                             <div style="color: #00BFFF; font-weight: bold">Chưa xác thực</div>
-                                            <%} else {
+                                            <%
+                                            } else {
+                                                // với từng đơn hàng, lấy ra chuỗi thông tin tổng hợp của nó
                                                 String inforOrder = OrderService.getInstance().createHashMessageWithOrder(od);
                                                 PublicKey publicKey = new KeyDAO().getPublicKey(od.getCustomerID(), od.getOrderDate());
-                                                String hash = new Hash().hashString(inforOrder);
-                                                if(dsa.verify(hash, od.getHashMessage(), dsa.convertStringToPublicKey(publicKey.getPublicKey()))) {%>
+//                                                String hash = new Hash().hashString(inforOrder);
+                                                String hash = null;
+                                                try {
+                                                    // hash thông tin tổng hợp của đơn hàng bằng md5
+                                                    hash = new HashAlgorithms().hash(inforOrder, "MD5");
+                                                } catch (Exception e) {
+                                                    throw new RuntimeException(e);
+                                                }
+//                                                if (dsa.verify(hash, od.getHashMessage(), dsa.convertStringToPublicKey(publicKey.getPublicKey()))) {
+                                                try {
+                                                    ds.setPublicKey(publicKey.getPublicKey()); // trong DB lưu public key dưới dạng base64 rồi
+                                                } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+                                                    throw new RuntimeException(e);
+                                                }
+                                                try {
+                                                    // xác thực hash hiện tại và chữ ký lưu kèm trong đơn
+                                                    // băm hash ra 1 lần nữa, rồi dùng public key giải chữ ký, so sánh
+                                                    if (ds.verify(hash, od.getHashMessage())) {
+                                            %>
                                             <div style="color: #35ff00; font-weight: bold">Đã xác thực</div>
                                             <%} else {%>
                                             <div style="color: red; font-weight: bold">Lỗi đơn</div>
-                                            <%}
-                                            }%>
+                                            <%
+                                                        }
+                                                    } catch (InvalidKeyException | SignatureException e) {
+                                                        throw new RuntimeException(e);
+                                                    }
+                                                }
+                                            %>
                                         </td>
                                         <td>
                                             <a class="btn_2 edit btn btn-primary" type="submit"
@@ -330,36 +362,60 @@
                                         </td>
                                         <td>
                                             <%if (od.getVerify() == 0) {%>
-                                            <a style="background-color:#35ff00;" class="btn_2 edit btn btn-primary verify"
+                                            <a style="background-color:#35ff00;"
+                                               class="btn_2 edit btn btn-primary verify"
                                                type="submit"
-<%--                                               href="/Petshop_website_final_war/VerifyOrderController?orderId=<%=od.getOrderID()%>"--%>
+                                            <%--                                                                                           href="/Petshop_website_final_war/VerifyOrderController?orderId=<%=od.getOrderID()%>"--%>
+                                               href="/Petshop_website_final_war/VerifyOrderController?orderId=<%=od.getOrderID()%>"
                                                id="orderId=<%=od.getOrderID()%>">
                                                 Xác thực</a>
-                                            <%} else {
+                                            <%
+                                            } else {
                                                 String inforOrder = OrderService.getInstance().createHashMessageWithOrder(od);
                                                 PublicKey publicKey = new KeyDAO().getPublicKey(od.getCustomerID(), od.getOrderDate());
-                                                String hash = new Hash().hashString(inforOrder);
-                                                if(dsa.verify(hash, od.getHashMessage(), dsa.convertStringToPublicKey(publicKey.getPublicKey()))) {%>
-<%--                                            <div style="color: #35ff00; font-weight: bold">Đã xác thực</div>--%>
+//                                                String hash = new Hash().hashString(inforOrder);
+                                                String hash = null;
+                                                try {
+                                                    hash = new HashAlgorithms().hash(inforOrder, "MD5");
+                                                } catch (Exception e) {
+                                                    throw new RuntimeException(e);
+                                                }
+//                                                if (dsa.verify(hash, od.getHashMessage(), dsa.convertStringToPublicKey(publicKey.getPublicKey()))) {
+                                                try {
+                                                    ds.setPublicKey(publicKey.getPublicKey());
+                                                } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+                                                    throw new RuntimeException(e);
+                                                }
+                                                try {
+                                                    if (ds.verify(hash, od.getHashMessage())) {
+                                            %>
+                                            <%--                                            <div style="color: #35ff00; font-weight: bold">Đã xác thực</div>--%>
                                             <%} else {%>
-                                            <a style="background-color:red;" class="btn_2 edit btn btn-primary cancel-order"
-                                                type="submit"
-                                                <%--href="/Petshop_website_final_war/CancelOrderController?orderId=<%=od.getOrderID()%>"--%>
-                                                id="orderId=<%=od.getOrderID()%>">
+                                            <a style="background-color:red;"
+                                               class="btn_2 edit btn btn-primary cancel-order"
+                                               type="submit"
+                                            <%--                                               href="/Petshop_website_final_war/CancelOrderController?orderId=<%=od.getOrderID()%>"--%>
+                                               href="/Petshop_website_final_war/CancelOrderController?orderId=<%=od.getOrderID()%>"
+                                               id="orderId=<%=od.getOrderID()%>">
                                                 Hủy đơn</a>
-                                            <%}
-                                            }%>
+                                            <%
+                                                        }
+                                                    } catch (InvalidKeyException | SignatureException e) {
+                                                        throw new RuntimeException(e);
+                                                    }
+                                                }
+                                            %>
 
-<%--                                            <%} else if (od.getVerify() == 1) {%>--%>
-<%--                                            &lt;%&ndash;                                                        <a style="background-color:#35ff00;" class="btn_2 edit btn btn-primary" type="submit" href="order-detail-ad.jsp?orderId=<%=od.getOrderID()%>">&ndash;%&gt;--%>
-<%--                                            &lt;%&ndash;                                                            Đã xác thực</a>&ndash;%&gt;--%>
-<%--                                            <%} else {%>--%>
-<%--                                            <a style="background-color:red;" class="btn_2 edit btn btn-primary cancel-order"--%>
-<%--                                               type="submit"--%>
-<%--&lt;%&ndash;                                               href="/Petshop_website_final_war/CancelOrderController?orderId=<%=od.getOrderID()%>"&ndash;%&gt;--%>
-<%--                                                id="orderId=<%=od.getOrderID()%>">--%>
-<%--                                                Hủy đơn</a>--%>
-<%--                                            <%}%>--%>
+                                            <%--                                            <%} else if (od.getVerify() == 1) {%>--%>
+                                            <%--                                            &lt;%&ndash;                                                        <a style="background-color:#35ff00;" class="btn_2 edit btn btn-primary" type="submit" href="order-detail-ad.jsp?orderId=<%=od.getOrderID()%>">&ndash;%&gt;--%>
+                                            <%--                                            &lt;%&ndash;                                                            Đã xác thực</a>&ndash;%&gt;--%>
+                                            <%--                                            <%} else {%>--%>
+                                            <%--                                            <a style="background-color:red;" class="btn_2 edit btn btn-primary cancel-order"--%>
+                                            <%--                                               type="submit"--%>
+                                            <%--&lt;%&ndash;                                               href="/Petshop_website_final_war/CancelOrderController?orderId=<%=od.getOrderID()%>"&ndash;%&gt;--%>
+                                            <%--                                                id="orderId=<%=od.getOrderID()%>">--%>
+                                            <%--                                                Hủy đơn</a>--%>
+                                            <%--                                            <%}%>--%>
                                         </td>
 
 
@@ -402,30 +458,37 @@
 <script src="assets/js/pages/dashboard-sale.js"></script>
 <script>
     $(document).ready(function () {
+        console.log("Check");
         verify()
         cancelOrder()
+        console.log("Check");
     })
+
     function verify() {
         $(".verify").each(function () {
             $(this).click(function () {
                 let orderId = $(this).attr("id").substring(8)
+                console.log("hello");
                 $.ajax({
                     url: '/Petshop_website_final_war/VerifyOrderController',
                     type: 'GET',
                     data: {
-                        orderId : orderId
+                        orderId: orderId
                     },
                     success: function (data) {
                         $('.table tbody').html(data)
                         verify()
                         cancelOrder()
+                        console.log("thành công");
                     }, error: function () {
                         alert("Lỗi")
+                        console.log("lỗi");
                     }
                 })
             })
         })
     }
+
     function cancelOrder() {
         $(".cancel-order").each(function () {
             $(this).click(function () {
@@ -434,7 +497,7 @@
                     url: '/Petshop_website_final_war/CancelOrderController',
                     type: 'GET',
                     data: {
-                        orderId : orderId
+                        orderId: orderId
                     },
                     success: function (data) {
                         $('.table tbody').html(data)

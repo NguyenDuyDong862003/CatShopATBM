@@ -85,7 +85,7 @@ public class DSA {
         }
     }
 
-    public boolean isImportKey(String keyString) {  // 2013025_Trần Nhựt Hào
+    public boolean isImportKey(String keyString) {
         if (!isBase64(keyString)) {
             System.out.println("key không đúng định dạng base64");
             return false;
@@ -158,7 +158,6 @@ public class DSA {
         return new String(base64Bytes, StandardCharsets.UTF_8);
     }
 
-    // 20130260-Hoàng Trung Hiếu
     public PrivateKey convertStringToPrivateKey(String privateKeyString) throws Exception {
         byte[] keyBytes = Base64.getDecoder().decode(privateKeyString);
 
@@ -168,7 +167,6 @@ public class DSA {
         return keyFactory.generatePrivate(keySpec);
     }
 
-    // 20130260-Hoàng Trung Hiếu
     public PublicKey convertStringToPublicKey(String publicKeyString) throws Exception {
         byte[] keyBytes = Base64.getDecoder().decode(publicKeyString);
 

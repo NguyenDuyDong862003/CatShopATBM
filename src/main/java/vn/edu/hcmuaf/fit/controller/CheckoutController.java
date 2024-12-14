@@ -9,6 +9,7 @@ import vn.edu.hcmuaf.fit.services.LogService;
 import vn.edu.hcmuaf.fit.services.OrderService;
 import vn.edu.hcmuaf.fit.services.ProductService;
 import vn.edu.hcmuaf.fit.tool.Hash;
+import vn.edu.hcmuaf.fit.tool.src.model.HashAlgorithms;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -24,15 +25,15 @@ public class CheckoutController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
-    //20130252_Trần Nhựt Hào
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         UserAccount userAccount = (UserAccount) request.getSession().getAttribute("user");
-        boolean isvalid=new KeyDAO().isValidKey(userAccount.getId());
+        boolean isvalid = new KeyDAO().isValidKey(userAccount.getId());
         System.out.println(isvalid);
-        if(!isvalid){
+        if (!isvalid) {
             response.getWriter().write("failure");
             return;
         }
@@ -42,15 +43,20 @@ public class CheckoutController extends HttpServlet {
         String email = request.getParameter("email");
         String notice = request.getParameter("notice");
         Cart cart = (Cart) request.getSession().getAttribute("cart");
-        String valueString=fullName+phone+address+email+notice+cart.total();
-        for (Map.Entry key:cart.getData().entrySet()){
-            Product pro= (Product) key.getValue();
-            valueString+=pro.getProductId()+pro.getProductName()+pro.getPrice()+pro.getPromotionalPrice()+pro.getQuantityCart();
+        String valueString = fullName + phone + address + email + notice + cart.total();
+        for (Map.Entry key : cart.getData().entrySet()) {
+            Product pro = (Product) key.getValue();
+            valueString += pro.getProductId() + pro.getProductName() + pro.getPrice() + pro.getPromotionalPrice() + pro.getQuantityCart();
         }
-        String mesageHash=new Hash().hashString(valueString);
+//        String mesageHash = new Hash().hashString(valueString);
+        String mesageHash = null;
+        try {
+            mesageHash = new HashAlgorithms().hash(valueString, "MD5");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 //        System.out.println(mesageHash);
         System.out.println(valueString);
         response.getWriter().write(mesageHash);
-
     }
 }
