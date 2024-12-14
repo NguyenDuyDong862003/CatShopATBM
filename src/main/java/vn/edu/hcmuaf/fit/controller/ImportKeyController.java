@@ -22,7 +22,6 @@ public class ImportKeyController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
-    // 2013025_Trần Nhựt Hào
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String publicKey = request.getParameter("publicKey");

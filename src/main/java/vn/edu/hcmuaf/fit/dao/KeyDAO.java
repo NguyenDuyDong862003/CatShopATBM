@@ -66,7 +66,7 @@ public class KeyDAO {
         }
         return false;
     }
-    public boolean insertPublicKey(String userID, String publicKey){  //20130252-Trần Nhựt Hào
+    public boolean insertPublicKey(String userID, String publicKey){
         try (Connection connection = connectDB()) {
             // Tạo câu truy vấn SQL với PreparedStatement
             String sql = "INSERT INTO public_key (user_id, publicKey, created_at, expired_at) VALUES (?, ?, CURRENT_TIMESTAMP, '9999-12-31')";
@@ -84,7 +84,7 @@ public class KeyDAO {
         }
         return true;
     }
-    public boolean reportKey(String userID){  //20130230-trần trung đông
+    public boolean reportKey(String userID){
         try (Connection connection = connectDB()) {
             // Tạo câu truy vấn SQL với PreparedStatement
             String sql = "UPDATE public_key SET expired_at =CURRENT_TIMESTAMP WHERE public_key.user_id=? AND public_key.expired_at='9999-12-31 00:00:00'";

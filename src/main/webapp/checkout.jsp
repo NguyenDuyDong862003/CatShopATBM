@@ -640,7 +640,7 @@
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     // Xử lý phản hồi từ Servlet và gán giá trị vào input
                     hideTableCK();
-                    window.location.href = '/Petshop_website_final_war_war_exploded/index.jsp'
+                    window.location.href = '/Petshop_website_final_war/index.jsp'
                 }
             };
             // Chuẩn bị dữ liệu để gửi

@@ -18,7 +18,7 @@ import java.util.Map;
 @WebServlet(name = "SaveOrderController", value = "/SaveOrderController")
 
 public class SaveOrderController extends HttpServlet {
-    //20130252_Trần Nhựt Hào
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String fullName = request.getParameter("fullName");
         String phone = request.getParameter("phone");

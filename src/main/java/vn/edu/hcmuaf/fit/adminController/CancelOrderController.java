@@ -9,7 +9,6 @@ import java.io.IOException;
 
 @WebServlet(name = "CancelOrderController", value = "/CancelOrderController")
 public class CancelOrderController extends HttpServlet {
-    // 20130260-Hoàng Trung Hiếu
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String orderId = request.getParameter("orderId");
