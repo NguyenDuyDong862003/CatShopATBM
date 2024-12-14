@@ -73,7 +73,7 @@
                 PublicKey publicKey = new KeyDAO().getPublicKey(od.getCustomerID(), od.getOrderDate());
                 String hash = new Hash().hashString(inforOrder);
                 if(dsa.verify(hash, od.getHashMessage(), dsa.convertStringToPublicKey(publicKey.getPublicKey()))) {%>
-            <%--                                            <div style="color: #35ff00; font-weight: bold">Đã xác thực</div>--%>
+                                                        <div style="color: #35ff00; font-weight: bold">Đã xác thực</div>
             <%} else {%>
             <a style="background-color:red;" class="btn_2 edit btn btn-primary cancel-order"
                type="submit"
