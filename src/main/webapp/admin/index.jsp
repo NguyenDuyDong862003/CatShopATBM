@@ -358,7 +358,7 @@
                                 <table class="table table-hover m-b-0">
                                     <thead>
                                     <tr>
-                                        <th><i class="fa-solid fa-cart-shopping" style="color: #00bfff;"></i></th>
+                                        <th><i class="fa-solid fa-cart-shopping" style="color: #FBDEA4;"></i></th>
                                         <th>Mã đơn hàng</th>
                                         <th>Mã khách hàng</th>
                                         <th>Ngày đặt</th>
@@ -367,7 +367,7 @@
                                     <tbody>
                                     <% for ( Orders o : Last5Order) {%>
                                     <tr>
-                                        <td><i class="fa-solid fa-cart-shopping" style="color: #00bfff;"></i></td>
+                                        <td><i class="fa-solid fa-cart-shopping" style="color: #FBDEA4;"></i></td>
                                         <td><%=o.getOrderID()%></td>
                                         <td><%=o.getCustomerID()%></td>
                                         <td>

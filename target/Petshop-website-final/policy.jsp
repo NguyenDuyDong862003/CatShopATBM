@@ -62,7 +62,7 @@
                 color: #293240;
                 text-align: left;
                 list-style: none;
-                background-color: #00BFFF;
+                background-color: #FBDEA4;
                 background-clip: padding-box;
                 border: 0 solid rgba(0, 0, 0, 0.15);
                 border-radius: 4px;
@@ -87,13 +87,13 @@
             }
 
             .dropdown-item:hover, .dropdown-item:focus {
-                color: #00BFFF;
+                color: #FBDEA4;
                 text-decoration: none;
                 background-color: #e3e1fc;
             }
 
             .dropdown-item.active, .dropdown-item:active {
-                color: #00BFFF;
+                color: #FBDEA4;
                 text-decoration: none;
                 background-color: #e3e1fc;
             }

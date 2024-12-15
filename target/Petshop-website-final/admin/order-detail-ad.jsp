@@ -358,7 +358,7 @@
                                                 <%if (order.getDelivered() == 0) {%>
                                                 <select class="form-select mb-3" name="udstatus" id="status">
                                                     <option value="0" selected
-                                                            style="color: #00BFFF; font-weight: bold">Đang xử lý
+                                                            style="color: #FBDEA4; font-weight: bold">Đang xử lý
                                                     </option>
                                                     <option value="1" style="color: #35ff00; font-weight: bold">Hoàn
                                                         thành

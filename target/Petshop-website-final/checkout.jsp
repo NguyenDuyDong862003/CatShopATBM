@@ -69,7 +69,7 @@
             color: #293240;
             text-align: left;
             list-style: none;
-            background-color: #00BFFF;
+            background-color: #FBDEA4;
             background-clip: padding-box;
             border: 0 solid rgba(0, 0, 0, 0.15);
             border-radius: 4px;
@@ -94,13 +94,13 @@
         }
 
         .dropdown-item:hover, .dropdown-item:focus {
-            color: #00BFFF;
+            color: #FBDEA4;
             text-decoration: none;
             background-color: #e3e1fc;
         }
 
         .dropdown-item.active, .dropdown-item:active {
-            color: #00BFFF;
+            color: #FBDEA4;
             text-decoration: none;
             background-color: #e3e1fc;
         }
@@ -141,7 +141,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             padding: 20px;
-            background-image: url(img/breadcrumb.jpg);
+            background-image: url(img/1734258996071.png);
             background-position: top right;
             z-index: 1;
             border-radius: 10px;
@@ -160,7 +160,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             padding: 20px;
-            background-image: url(img/breadcrumb.jpg);
+            background-image: url(img/1734258996071.png);
             background-position: top right;
             z-index: 1;
             border-radius: 10px;
@@ -334,7 +334,7 @@
 <!-- Hero Section End -->
 
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
+<section class="breadcrumb-section set-bg" data-setbg="img/1734258996071.png">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -674,6 +674,7 @@
                     showTable()
                     //
                 }else {
+                    // Mã hash đơn hàng
                     document.getElementById("messageHash").value = xhr.responseText;
                     showTableCK();
                 }

@@ -59,7 +59,7 @@
             </div>
 
           </div>
-          <span style="margin-left: 150px ">Bạn đã có tài khoản? <a href="../Login/index.jsp" style="text-decoration: none; color: #00BFFF">Đăng nhập</a></span>
+          <span style="margin-left: 150px ">Bạn đã có tài khoản? <a href="../Login/index.jsp" style="text-decoration: none; color: #FBDEA4">Đăng nhập</a></span>
         </form>
       </div>
     </div>

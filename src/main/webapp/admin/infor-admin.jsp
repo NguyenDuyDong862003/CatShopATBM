@@ -35,7 +35,7 @@
     }
 
     .profile-button {
-      background: #00BFFF;
+      background: #FBDEA4;
       box-shadow: none;
       border: none
     }
@@ -45,7 +45,7 @@
     }
 
     .profile-button:focus {
-      background: #00BFFF;
+      background: #FBDEA4;
       box-shadow: none
     }
 
@@ -55,7 +55,7 @@
     }
 
     .back:hover {
-      color: #00BFFF;
+      color: #FBDEA4;
       cursor: pointer
     }
 
@@ -110,7 +110,7 @@
 
     }
     .input-file::before {
-      background: #00BFFF;
+      background: #FBDEA4;
       border-radius: 50px;
       border: none;
       color: #fff;

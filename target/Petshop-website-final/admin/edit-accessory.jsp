@@ -74,7 +74,7 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/libraries/ckeditor/ckeditor.js"></script>
     <style>
         .input-file::-webkit-file-upload-button {
-            background: #00BFFF;
+            background: #FBDEA4;
             border-radius: 50px;
             border: none;
             color: #fff;
