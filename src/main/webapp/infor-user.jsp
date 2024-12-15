@@ -2,7 +2,7 @@
 <%@ page import="vn.edu.hcmuaf.fit.services.ProductService" %>
 <%@ page import="vn.edu.hcmuaf.fit.beans.UserAccount" %>
 <%@ page import="vn.edu.hcmuaf.fit.dao.KeyDAO" %>
-<%--<%@ page import="vn.edu.hcmuaf.fit.tool.DSA" %>--%>
+<%@ page import="vn.edu.hcmuaf.fit.tool.DSA" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>

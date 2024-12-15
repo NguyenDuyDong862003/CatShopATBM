@@ -4,16 +4,10 @@
 <%@ page import="vn.edu.hcmuaf.fit.services.OrderService" %>
 <%@ page import="java.util.List" %>
 <%@ page import="vn.edu.hcmuaf.fit.services.UserService" %>
-<%--<%@ page import="vn.edu.hcmuaf.fit.tool.DSA" %>--%>
+<%@ page import="vn.edu.hcmuaf.fit.tool.DSA" %>
 <%@ page import="vn.edu.hcmuaf.fit.beans.PublicKey" %>
 <%@ page import="vn.edu.hcmuaf.fit.dao.KeyDAO" %>
-<%--<%@ page import="vn.edu.hcmuaf.fit.tool.Hash" %>--%>
-<%@ page import="vn.edu.hcmuaf.fit.tool.src.model.DS" %>
-<%@ page import="vn.edu.hcmuaf.fit.tool.src.model.HashAlgorithms" %>
-<%@ page import="java.security.NoSuchAlgorithmException" %>
-<%@ page import="java.security.spec.InvalidKeySpecException" %>
-<%@ page import="java.security.InvalidKeyException" %>
-<%@ page import="java.security.SignatureException" %><%--
+<%@ page import="vn.edu.hcmuaf.fit.tool.Hash" %><%--
   Created by IntelliJ IDEA.
   User: ADMIN
   Date: 12/18/2023
@@ -22,8 +16,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% NumberFormat format = NumberFormat.getInstance(new Locale("vn", "VN"));
-//    DSA dsa = new DSA();
-    DS ds = new DS();
+    DSA dsa = new DSA();
 %>
 <%
     List<Orders> listod = OrderService.getInstance().ordersList();
@@ -61,36 +54,16 @@
         <td>
             <%if (od.getVerify() == 0) {%>
             <div style="color: #00BFFF; font-weight: bold">Chưa xác thực</div>
-            <%
-            } else {
+            <%} else {
                 String inforOrder = OrderService.getInstance().createHashMessageWithOrder(od);
                 PublicKey publicKey = new KeyDAO().getPublicKey(od.getCustomerID(), od.getOrderDate());
-//                String hash = new Hash().hashString(inforOrder);
-                try {
-                    ds.setPublicKey(publicKey.getPublicKey());
-                } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-                    throw new RuntimeException(e);
-                }
-                String hash = null;
-                try {
-                    hash = new HashAlgorithms().hash(inforOrder, "MD5");
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-//                if (dsa.verify(hash, od.getHashMessage(), dsa.convertStringToPublicKey(publicKey.getPublicKey()))) {
-                try {
-                    if (ds.verify(hash, od.getHashMessage())) {
-            %>
+                String hash = new Hash().hashString(inforOrder);
+                if(dsa.verify(hash, od.getHashMessage(), dsa.convertStringToPublicKey(publicKey.getPublicKey()))) {%>
             <div style="color: #35ff00; font-weight: bold">Đã xác thực</div>
             <%} else {%>
             <div style="color: red; font-weight: bold">Lỗi đơn</div>
-            <%
-                        }
-                    } catch (InvalidKeyException | SignatureException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            %>
+            <%}
+            }%>
         </td>
         <td>
             <a class="btn_2 edit btn btn-primary" type="submit"
@@ -103,26 +76,11 @@
             <%--                                               href="/Petshop_website_final_war/VerifyOrderController?orderId=<%=od.getOrderID()%>"--%>
                id="orderId=<%=od.getOrderID()%>">
                 Xác thực</a>
-            <%
-            } else {
+            <%} else {
                 String inforOrder = OrderService.getInstance().createHashMessageWithOrder(od);
                 PublicKey publicKey = new KeyDAO().getPublicKey(od.getCustomerID(), od.getOrderDate());
-//                String hash = new Hash().hashString(inforOrder);
-                String hash = null;
-                try {
-                    hash = new HashAlgorithms().hash(inforOrder, "MD5");
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    ds.setPublicKey(publicKey.getPublicKey());
-                } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-                    throw new RuntimeException(e);
-                }
-//                if (dsa.verify(hash, od.getHashMessage(), dsa.convertStringToPublicKey(publicKey.getPublicKey()))) {
-                try {
-                    if (ds.verify(hash, od.getHashMessage())) {
-            %>
+                String hash = new Hash().hashString(inforOrder);
+                if(dsa.verify(hash, od.getHashMessage(), dsa.convertStringToPublicKey(publicKey.getPublicKey()))) {%>
             <%--                                            <div style="color: #35ff00; font-weight: bold">Đã xác thực</div>--%>
             <%} else {%>
             <a style="background-color:red;" class="btn_2 edit btn btn-primary cancel-order"
@@ -130,13 +88,8 @@
             <%--href="/Petshop_website_final_war/CancelOrderController?orderId=<%=od.getOrderID()%>"--%>
                id="orderId=<%=od.getOrderID()%>">
                 Hủy đơn</a>
-            <%
-                        }
-                    } catch (InvalidKeyException | SignatureException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            %>
+            <%}
+            }%>
 
             <%--                                            <%} else if (od.getVerify() == 1) {%>--%>
             <%--                                            &lt;%&ndash;                                                        <a style="background-color:#35ff00;" class="btn_2 edit btn btn-primary" type="submit" href="order-detail-ad.jsp?orderId=<%=od.getOrderID()%>">&ndash;%&gt;--%>

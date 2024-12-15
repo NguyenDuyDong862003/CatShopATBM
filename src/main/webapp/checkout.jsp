@@ -1,4 +1,4 @@
-<%@ page import="java.util.List" %>
+    <%@ page import="java.util.List" %>
 <%@ page import="vn.edu.hcmuaf.fit.services.ProductService" %>
 <%@ page import="vn.edu.hcmuaf.fit.beans.Cart" %>
 <%@ page import="vn.edu.hcmuaf.fit.beans.Product" %>
@@ -153,7 +153,6 @@
             text-align: center;
             min-width: 120px;
         }
-
         #myTableCK {
             display: none;
             position: fixed;
@@ -161,17 +160,15 @@
             left: 50%;
             transform: translate(-50%, -50%);
             padding: 20px;
-            /*background-image: url(img/breadcrumb.jpg);*/
-            /*background-position: top right;*/
-            background-color: #0d95e8;
+            background-image: url(img/breadcrumb.jpg);
+            background-position: top right;
             z-index: 1;
             border-radius: 10px;
             border: 1px black;
             width: 410px;
             text-align: center;
         }
-
-        #myTableCK label {
+        #myTableCK label{
             text-align: left;
             min-width: 120px;
         }
@@ -194,7 +191,6 @@
             opacity: 1;
             visibility: visible;
         }
-
         .overlayTT {
             position: fixed;
             top: 0;
@@ -212,7 +208,6 @@
             opacity: 1;
             visibility: visible;
         }
-
         select.pdw {
             min-width: 200px;
             height: 30px;
@@ -220,7 +215,7 @@
         }
 
         .bt1 {
-            background-color: #0b5ed7;
+            background-color: #007bff;
             border-radius: 5px;
             width: 140px;
             padding: 7px;
@@ -229,7 +224,7 @@
         }
 
         .bt2 {
-            background-color: #0b5ed7;
+            background-color: #007bff;
             border-radius: 5px;
             width: 90px;
             padding: 7px;
@@ -237,7 +232,6 @@
             text-align: center;
             color: white;
         }
-
         #copyIcon {
             font-size: 1.5em;
             cursor: pointer;
@@ -369,137 +363,129 @@
         </div>
         <div class="checkout__form">
             <h4>Thông tin thanh toán</h4>
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="checkout__input">
-                                <p>Họ Tên<span>*</span></p>
-                                <input type="text" class="fullname" name="fullname" value="<%=user.getName()%>">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Họ Tên<span>*</span></p>
+                                    <input type="text" class="fullname" name="fullname" value="<%=user.getName()%>">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Số điện thoại<span>*</span></p>
+                                    <input type="text" class="phone" name="phone" value="<%=user.getPhone()%>">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="checkout__input">
-                                <p>Số điện thoại<span>*</span></p>
-                                <input type="text" class="phone" name="phone" value="<%=user.getPhone()%>">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="checkout__input">
-                        <p>Địa chỉ<span>*</span></p>
-                        <%if (user.getAddress() == null) {%>
-                        <input type="text" id="address" class="address" name="address"
-                               placeholder="Nhập địa chỉ nhận hàng">
-                        <%} else {%>
-                        <input type="text" id="address" placeholder="Nhập địa chỉ nhận hàng" class="address"
-                               name="address" value="<%=user.getAddress()%>">
-                        <%}%>
-                        <div id="myTable">
-                            <label style="font-size: 20px;color: red; text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white">Bạn
-                                chưa có khóa để ký đơn hàng.</label>
-                            <br>
-                            <label style="font-size: 20px;color: red; text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white">Vui
-                                lòng thêm khóa.</label>
-                            <br>
-                            <div style="align-content: center;text-align: center">
-                                <div onclick="hideTable()" class="bt2">Hủy</div>
-                                <div onclick="passToUser()" class="bt2" style="min-width: 150px">Thêm khóa</div>
-                            </div>
+                        <div class="checkout__input">
+                            <p>Địa chỉ<span>*</span></p>
+                            <%if (user.getAddress() == null) {%>
+                            <input type="text" id="address" class="address" name="address"
+                                   placeholder="Nhập địa chỉ nhận hàng">
+                            <%} else {%>
+                            <input type="text" id="address" placeholder="Nhập địa chỉ nhận hàng" class="address"
+                                   name="address" value="<%=user.getAddress()%>">
+                            <%}%>
+                            <div id="myTable">
+                                <label style="font-size: 20px;color: red; text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white">Bạn chưa có khóa để ký đơn hàng.</label>
+                                <br>
+                                <label style="font-size: 20px;color: red; text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white">Vui lòng tạo khóa hoặc thêm khóa.</label>
 
+                                <br>
+                                <div style="align-content: center;text-align: center">
+                                    <div onclick="hideTable()" class="bt2">Hủy</div>
+                                    <div onclick="passToUser()" class="bt2" style="min-width: 150px">Cập nhật khóa</div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="checkout__input">
+                            <p>Email<span>*</span></p>
+                            <input type="email" class="email" name="email" value="<%=user.getEmail()%>">
+                        </div>
+                        <div class="checkout__input">
+                            <p>Ghi chú</p>
+                            <input type="text" class="notice"
+                                   placeholder="Ghi chú về đơn hàng của bạn, ví dụ: Giao hàng vào khung giờ nào..."
+                                   name="notice">
                         </div>
                     </div>
-                    <div class="checkout__input">
-                        <p>Email<span>*</span></p>
-                        <input type="email" class="email" name="email" value="<%=user.getEmail()%>">
-                    </div>
-                    <div class="checkout__input">
-                        <p>Ghi chú</p>
-                        <input type="text" class="notice"
-                               placeholder="Ghi chú về đơn hàng của bạn, ví dụ: Giao hàng vào khung giờ nào..."
-                               name="notice">
-                    </div>
-                </div>
-                <%
-                    Cart cart = (Cart) request.getSession().getAttribute("cart");
-                    NumberFormat format = NumberFormat.getInstance(new Locale("vn", "VN"));
-                %>
-                <div class="col-lg-6 col-md-6">
-                    <div class="checkout__order">
-                        <h4>Hóa đơn của bạn</h4>
-                        <div class="checkout__order__products">Sản phẩm <span>Tổng tiền</span></div>
-                        <ul>
-                            <%
-                                for (String id : cart.getData().keySet()) {
-                                    if (cart.getData().get(id).getPromotional() == 1) {%>
-                            <li><%=cart.getData().get(id).getProductName()%>
-                                <span>
+                    <%
+                        Cart cart = (Cart) request.getSession().getAttribute("cart");
+                        NumberFormat format = NumberFormat.getInstance(new Locale("vn", "VN"));
+                    %>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="checkout__order">
+                            <h4>Hóa đơn của bạn</h4>
+                            <div class="checkout__order__products">Sản phẩm <span>Tổng tiền</span></div>
+                            <ul>
+                                <%
+                                    for (String id : cart.getData().keySet()) {
+                                        if (cart.getData().get(id).getPromotional() == 1) {%>
+                                <li><%=cart.getData().get(id).getProductName()%>
+                                    <span>
                                         <%=format.format(cart.getData().get(id).getQuantityCart() * (cart.getData().get(id).getPrice() - (cart.getData().get(id).getPrice() * cart.getData().get(id).getPromotionalPrice() / 100)))%>₫
                                     </span>
-                            </li>
-                            <%} else {%>
-                            <li><%=cart.getData().get(id).getProductName()%>
-                                <span>
+                                </li>
+                                <%} else {%>
+                                <li><%=cart.getData().get(id).getProductName()%>
+                                    <span>
                                         <%=format.format(cart.getData().get(id).getQuantityCart() * cart.getData().get(id).getPrice())%>₫
                                     </span>
-                            </li>
-                            <%}%>
-                            <% }%>
-                            <li> Phí vận chuyển
-                                <span id="Fee">
+                                </li>
+                                <%}%>
+                                <% }%>
+                                <li> Phí vận chuyển
+                                    <span id="Fee">
                                     </span>
-                            </li>
-                            <li> Thời gian nhận dự kiến
-                                <span id="Time">
+                                </li>
+                                <li> Thời gian nhận dự kiến
+                                    <span id="Time">
                                     </span>
-                            </li>
-                        </ul>
-                        <div class="checkout__order__total">Tổng tiền
-                            <input value="<%=cart != null ? cart.total() : 0%>" id="totalPrice"
-                                   style="display: none">
-                            <span id="sum"></span></div>
+                                </li>
+                            </ul>
+                            <div class="checkout__order__total">Tổng tiền
+                                <input value="<%=cart != null ? cart.total() : 0%>" id="totalPrice"
+                                       style="display: none">
+                                <span id="sum"></span></div>
 
-                        <p>Kiểm tra lại thông tin đơn hàng và những thông tin tôi đã nhập trước khi đặt hàng.</p>
-                        <div class="checkout__input__checkbox">
-                            <label for="payment">
-                                Thanh toán khi nhận hàng
-                                <input type="checkbox" id="payment">
-                                <span class="checkmark"></span>
-                            </label>
+                            <p>Kiểm tra lại thông tin đơn hàng và những thông tin tôi đã nhập trước khi đặt hàng.</p>
+                            <div class="checkout__input__checkbox">
+                                <label for="payment">
+                                    Thanh toán khi nhận hàng
+                                    <input type="checkbox" id="payment">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div id="errorOrder" style="text-align: center; color: red"></div>
+                            <button class="site-btn" id="" onclick="clickShowTableCK()">Mua hàng</button>
+                            <div id="myTableCK">
+                                <label style="font-size: 20px; text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white">Ký xác nhận đơn hàng</label>
+                                <br>
+                                <div style="display: inline-block ">
+                                    <label>Mã code cần ký:</label>
+                                    <input type="text" id="messageHash">
+                                    <span id="copyIcon" onclick="copyToClipboard()">📋</span>
+                                </div>
+                                <div style="display: inline-block ;align-items: center; padding-right: 37px">
+                                    <label>Mã code đã ký:</label>
+                                    <input type="text" id="messageSignedHash">
+                                </div>
+                                <br>
+                                <div id="errorCK" style="text-align: center; color: red"></div>
+                                <br>
+                                <div style="align-content: center">
+                                    <div onclick="hideTableCK()" class="bt2">Hủy</div>
+                                    <div onclick="signed()" class="bt2">Xác nhận</div>
+                                </div>
+                            </div>
+                            <input id="getDistrict" value="" type="text" style="display: none">
+                            <input id="getWard"  value="" type="text" style="display: none" >
                         </div>
-                        <div id="errorOrder" style="text-align: center; color: red"></div>
-                        <button class="site-btn" id="" onclick="clickShowTableCK()">Mua hàng</button>
-                        <div id="myTableCK">
-                            <label style="font-size: 25px; color: black; -webkit-text-stroke: 1px red">Ký
-                                đơn hàng</label>
-                            <div style="display: inline-block ">
-                                <label style="color: white;">Mã Hash của đơn hàng</label>
-                                <input type="text" id="messageHash" readonly>
-                                <span id="copyIcon" onclick="copyToClipboard()">📋</span>
-                            </div>
-                            <br>
-                            <br>
-                            <div style="display: inline-block ;align-items: center; padding-right: 37px">
-                                <label style="color: white;">Kết quả sau khi ký</label>
-                                <input type="text" id="messageSignedHash">
-                            </div>
-                            <p style="color: white;">(*) Hướng dẫn: Mở tool lên, ở phần "Ký (Text)", tại hộp input plain
-                                text, nhập mã hash
-                                của đơn hàng, nhập private key, rồi bấm ký, sau đó lấy kết quả ký đưa vào hộp input
-                                trên</p>
-                            <br>
-                            <div id="errorCK"
-                                 style="text-align: center; font-size: 20px;color: red; -webkit-text-stroke: 1px black"></div>
-                            <br>
-                            <div style="align-content: center">
-                                <div onclick="hideTableCK()" class="bt2">Hủy</div>
-                                <div onclick="signed()" class="bt2">Xác nhận</div>
-                            </div>
-                        </div>
-                        <input id="getDistrict" value="" type="text" style="display: none">
-                        <input id="getWard" value="" type="text" style="display: none">
                     </div>
                 </div>
-            </div>
 
         </div>
     </div>
@@ -608,11 +594,11 @@
         var messHash = document.getElementById("messageHash");
         messHash.select();
         navigator.clipboard.writeText(messHash.value)
-            .then(function () {
+            .then(function() {
                 var errorTK = document.getElementById("errorTK");
                 errorTK.innerHTML = "Đã sao chép vào clipboard!";
             })
-            .catch(function (err) {
+            .catch(function(err) {
                 console.error('Failed to copy text: ', err);
             });
     }
@@ -628,11 +614,10 @@
         document.getElementById("overlayT").classList.remove("show");
         document.getElementById("error").innerHTML = "";
     }
-
-    function signed() {
+    function signed(){
         var signedHashMessage = document.getElementById("messageSignedHash").value;
         if (signedHashMessage.trim() === "") {
-            document.getElementById("errorCK").innerText = "(*) Kết quả ký không được để trống";
+            document.getElementById("errorCK").innerText = "(*)Khóa không được để trống";
         } else {
             document.getElementById("errorCK").innerText = ""; // Xóa thông báo lỗi nếu có
             // Lấy dữ liệu từ các input và textarea
@@ -654,17 +639,15 @@
                 }
             };
             // Chuẩn bị dữ liệu để gửi
-            var data = "fullName=" + fullName + "&phone=" + phone + "&address=" + address + "&email=" + email + "&notice=" + notice + "&message=" + signedHashMessage;
+            var data = "fullName=" + fullName + "&phone=" + phone + "&address=" + address + "&email=" + email + "&notice=" + notice+ "&message="+signedHashMessage;
             xhr.send(data);
         }
 
 
     }
-
-    function passToUser() {
+    function passToUser(){
         window.location.href = '/Petshop_website_final_war/infor-user.jsp'
     }
-
     function clickShowTableCK() {
         // Lấy dữ liệu từ các input và textarea
         var fullName = document.querySelector('.fullname').value;
@@ -683,11 +666,9 @@
                 console.log(xhr.responseText);
 
                 if (xhr.responseText === "failure") {
-                    // chưa có khóa
-                    showTable();
+                    showTable()
                     //
-                } else {
-                    // nhận kết quả hash đơn hàng set kết quả
+                }else {
                     document.getElementById("messageHash").value = xhr.responseText;
                     showTableCK();
                 }
@@ -699,13 +680,11 @@
         var data = "fullName=" + fullName + "&phone=" + phone + "&address=" + address + "&email=" + email + "&notice=" + notice;
         xhr.send(data);
     }
-
     function showTableCK() {
         document.getElementById("myTableCK").style.display = "block";
         document.getElementById("overlayT").classList.add("show");
         document.getElementById("overlayT").addEventListener("click", hideTableOnClickOutside);
     }
-
     function hideTableOnClickOutside(event) {
         var myTableCK = document.getElementById("myTableCK");
 
@@ -714,7 +693,6 @@
             hideTableCK();
         }
     }
-
     function hideTableCK() {
         document.getElementById("myTableCK").style.display = "none";
         document.getElementById("overlayT").classList.remove("show");
