@@ -308,6 +308,7 @@
                     <%if(p.getPromotional()==1){%>
                          <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                             <div class="featured__item">
+                                <!-- Kiểm tra lại đường dẫn image trong db nếu không load được ảnh -->
                                 <div class="featured__item__pic set-bg product__discount__item__pic " data-setbg="<%=p.getImage()%>">
                                     <div class="product__discount__percent"><%=p.getPromotionalPrice()%>%</div>
                                     <ul class="featured__item__pic__hover">

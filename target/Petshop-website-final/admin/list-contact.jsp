@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Nguyen Ngoc Huy
-  Date: 4/9/2023
-  Time: 10:51 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page import="vn.edu.hcmuaf.fit.dao.CustomerUserDAO" %>
 <%@ page import="java.util.List" %>
 <%@ page import="vn.edu.hcmuaf.fit.services.CommentService" %>

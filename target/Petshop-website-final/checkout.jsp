@@ -150,8 +150,8 @@
         }
 
         #myTable label {
-            display: inline-block;
-            width: 100px;
+            text-align: center;
+            min-width: 120px;
         }
         #myTableCK {
             display: none;
@@ -165,7 +165,7 @@
             z-index: 1;
             border-radius: 10px;
             border: 1px black;
-            width: 380px;
+            width: 410px;
             text-align: center;
         }
         #myTableCK label{
@@ -191,7 +191,23 @@
             opacity: 1;
             visibility: visible;
         }
+        .overlayTT {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 0;
+            transition: opacity 0.5s ease;
+        }
 
+        .overlayTT.show {
+            opacity: 1;
+            visibility: visible;
+        }
         select.pdw {
             min-width: 200px;
             height: 30px;
@@ -215,6 +231,10 @@
             display: inline-block;
             text-align: center;
             color: white;
+        }
+        #copyIcon {
+            font-size: 1.5em;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -368,26 +388,18 @@
                             <input type="text" id="address" placeholder="Nhập địa chỉ nhận hàng" class="address"
                                    name="address" value="<%=user.getAddress()%>">
                             <%}%>
-<%--                            <div class="bt1" onclick="showTable()" style="margin-top: 10px">Chỉnh sửa địa chỉ</div>--%>
-<%--                            <div id="myTable">--%>
-<%--                                <label>Số nhà:</label>--%>
-<%--                                <input type="text" id="soNha"><br><br>--%>
-<%--                                <label>Tỉnh/TP:</label>--%>
-<%--                                <select id="province" class="pdw">--%>
-<%--                                    <option value="">Tỉnh/Thành phố</option>--%>
-<%--                                </select><br><br>--%>
-<%--                                <label>Quận/Huyện:</label>--%>
-<%--                                <select id="district" class="pdw">--%>
-<%--                                    <option value="">Quận/Huyện</option>--%>
-<%--                                </select><br><br>--%>
-<%--                                <label>Phường/Xã:</label>--%>
-<%--                                <select id="ward" class="pdw">--%>
-<%--                                    <option value="">Phường/xã</option>--%>
-<%--                                </select><br><br>--%>
-<%--                                <div id="error" style="text-align: center; color: red"></div>--%>
-<%--                                <div onclick="hideTable()" class="bt2">Hủy</div>--%>
-<%--                                <div onclick="validateInput()" class="bt2">Cập nhật</div>--%>
-<%--                            </div>--%>
+                            <div id="myTable">
+                                <label style="font-size: 20px;color: red; text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white">Bạn chưa có khóa để ký đơn hàng.</label>
+                                <br>
+                                <label style="font-size: 20px;color: red; text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white">Vui lòng tạo khóa hoặc thêm khóa.</label>
+
+                                <br>
+                                <div style="align-content: center;text-align: center">
+                                    <div onclick="hideTable()" class="bt2">Hủy</div>
+                                    <div onclick="passToUser()" class="bt2" style="min-width: 150px">Cập nhật khóa</div>
+                                </div>
+
+                            </div>
                         </div>
                         <div class="checkout__input">
                             <p>Email<span>*</span></p>
@@ -453,12 +465,18 @@
                                 <label style="font-size: 20px; text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white">Ký xác nhận đơn hàng</label>
                                 <br>
                                 <div style="display: inline-block ">
-                                    <label>Mã code cần ký:</label>
+                                    <label>Mã hóa đơn:</label>
                                     <input type="text" id="messageHash">
+                                    <span id="copyIcon" onclick="copyToClipboard()">📋</span>
                                 </div>
-                                <div style="display: inline-block ">
-                                    <label>Mã code đã ký:</label>
+                                <div style="display: inline-block ;align-items: center; padding-right: 37px">
+                                    <label>Chữ ký:</label>
                                     <input type="text" id="messageSignedHash">
+                                </div>
+                                <div style="display: inline-block ;align-items: center;color: #fff;" >
+                                    <label>
+                                        (*) Vui lòng sử dụng công cụ để ký mã hóa đơn đã được cung cấp và nhập chữ ký để hệ thống có thể xác minh.
+                                    </label>
                                 </div>
                                 <br>
                                 <div id="errorCK" style="text-align: center; color: red"></div>
@@ -576,6 +594,20 @@
         }
     })
 
+    function copyToClipboard() {
+        // Lấy giá trị từ input
+        var messHash = document.getElementById("messageHash");
+        messHash.select();
+        navigator.clipboard.writeText(messHash.value)
+            .then(function() {
+                var errorTK = document.getElementById("errorTK");
+                errorTK.innerHTML = "Đã sao chép vào clipboard!";
+            })
+            .catch(function(err) {
+                console.error('Failed to copy text: ', err);
+            });
+    }
+
     function showTable() {
         document.getElementById("myTable").style.display = "block";
         document.getElementById("overlayT").classList.add("show");
@@ -618,6 +650,9 @@
 
 
     }
+    function passToUser(){
+        window.location.href = '/Petshop_website_final_war/infor-user.jsp'
+    }
     function clickShowTableCK() {
         // Lấy dữ liệu từ các input và textarea
         var fullName = document.querySelector('.fullname').value;
@@ -636,7 +671,8 @@
                 console.log(xhr.responseText);
 
                 if (xhr.responseText === "failure") {
-                    window.location.href = '/Petshop_website_final_war/infor-user.jsp'
+                    showTable()
+                    //
                 }else {
                     document.getElementById("messageHash").value = xhr.responseText;
                     showTableCK();
