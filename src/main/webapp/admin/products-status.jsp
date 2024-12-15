@@ -278,6 +278,7 @@
                                     DSA dsa = new DSA();
                                 %>
                                 <%
+                                    // Lấy danh sách đơn hàng
                                     List<Orders> listod = OrderService.getInstance().ordersList();
                                     for (Orders od : listod) {
                                 %>
@@ -292,6 +293,7 @@
                                         <td><%=od.getOrderDate()%>
                                         </td>
                                         <td>
+                                            // Hiển thị thông tin trạng thái đơn hàng
                                             <%if (od.getStatus() == 0) {%>
                                             <div style="color: red; font-weight: bold">Đã hủy</div>
                                             <%} else {%>
@@ -302,6 +304,7 @@
                                             <%}%>
                                             <%}%>
                                         </td>
+
                                         <%if (od.getDeliveryDate() == null) {%>
                                         <td>Chưa giao</td>
                                         <%} else {%>
@@ -309,6 +312,7 @@
                                         </td>
                                         <%}%>
                                         <td>
+                                            // Xác thực đơn hàng
                                             <%if (od.getVerify() == 0) {%>
                                             <div style="color: #FBDEA4; font-weight: bold">Chưa xác thực</div>
                                             <%} else {
@@ -322,6 +326,7 @@
                                             <%}
                                             }%>
                                         </td>
+                                        // Hiển thị tác vụ trên đơn hàng
                                         <td>
                                             <a class="btn_2 edit btn btn-primary" type="submit"
                                                href="order-detail-ad.jsp?orderId=<%=od.getOrderID()%>">Chi tiết</a>
