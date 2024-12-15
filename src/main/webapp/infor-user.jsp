@@ -561,8 +561,8 @@
                     <%} else {%>
                     <span class="font-weight-bold" style="color: red">Vui lòng xác nhận khóa (*)</span>
                     <div class="button-container">
-                        <div class="bt1" onclick="showTableK()">Upload khóa công khai mới</div>
-                        <%--                        <div class="bt1" onclick="createKey()" >Tạo Khóa</div>--%>
+<%--                        <div class="bt1" onclick="showTableK()">Upload khóa công khai mới</div>--%>
+                        <div class="bt1" onclick="createKey()">Tạo Khóa</div>
                     </div>
 
                     <div id="myTableTK">
