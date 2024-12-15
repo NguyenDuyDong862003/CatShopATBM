@@ -2,13 +2,6 @@
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="vn.edu.hcmuaf.fit.beans.Cart" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Nguyen Ngoc Huy
-  Date: 12/15/2022
-  Time: 3:52 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <%UserAccount user = (UserAccount) request.getSession().getAttribute("user");%>
 <%NumberFormat formatter = NumberFormat.getInstance(new Locale("vn", "VN"));%>

@@ -465,13 +465,18 @@
                                 <label style="font-size: 20px; text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white">Ký xác nhận đơn hàng</label>
                                 <br>
                                 <div style="display: inline-block ">
-                                    <label>Mã code cần ký:</label>
+                                    <label>Mã hóa đơn:</label>
                                     <input type="text" id="messageHash">
                                     <span id="copyIcon" onclick="copyToClipboard()">📋</span>
                                 </div>
                                 <div style="display: inline-block ;align-items: center; padding-right: 37px">
-                                    <label>Mã code đã ký:</label>
+                                    <label>Chữ ký:</label>
                                     <input type="text" id="messageSignedHash">
+                                </div>
+                                <div style="display: inline-block ;align-items: center;color: #fff;" >
+                                    <label>
+                                        (*) Vui lòng sử dụng công cụ để ký mã hóa đơn đã được cung cấp và nhập chữ ký để hệ thống có thể xác minh.
+                                    </label>
                                 </div>
                                 <br>
                                 <div id="errorCK" style="text-align: center; color: red"></div>

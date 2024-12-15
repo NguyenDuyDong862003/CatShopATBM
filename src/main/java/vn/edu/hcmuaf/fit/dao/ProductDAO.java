@@ -342,7 +342,7 @@ public class ProductDAO {
     }
 
     public List<Product> getFullAdminProduct() {
-        String query = "select distinct p.productId,p.ProductName,p.`Status`,p.Image,p.Price,p.Promotional,p.Quantity,p.Warranty,p.promotional,p.Description,p.Dital,p.CreateBy,p.CreateDate,p.UpdateBy,p.UpdateDate,p.giong,p.mausac,p.cannang,p.size,p.ViewCount from product p INNER JOIN product_from_cate pfc on p.productId = pfc.product_id where pfc.cate_id != 3;";
+        String query = "select distinct p.productId,p.ProductName,p.`Status`,p.Image,p.Price,p.PromotionalPrice,p.Quantity,p.Warranty,p.promotional,p.Description,p.Dital,p.CreateBy,p.CreateDate,p.UpdateBy,p.UpdateDate,p.giong,p.mausac,p.cannang,p.size,p.ViewCount from product p INNER JOIN product_from_cate pfc on p.productId = pfc.product_id where pfc.cate_id != 3;";
         List<Product> list = JDBIConnector.get().withHandle(handle -> {
                 return handle.createQuery(query)
                         .mapToBean(Product.class).stream().collect(Collectors.toList());
@@ -351,7 +351,7 @@ public class ProductDAO {
     }
 
     public List<Product> getFullAdminAccessory() {
-        String query = "select distinct p.productId,p.ProductName,p.`Status`,p.Image,p.Price,p.Promotional,p.Quantity,p.Warranty,p.promotional,p.Description,p.Dital,p.CreateBy,p.CreateDate,p.UpdateBy,p.UpdateDate,p.giong,p.mausac,p.cannang,p.size,p.ViewCount from product p INNER JOIN product_from_cate pfc on p.productId = pfc.product_id where pfc.cate_id = 3;";
+        String query = "select distinct p.productId,p.ProductName,p.`Status`,p.Image,p.Price,p.PromotionalPrice,p.Quantity,p.Warranty,p.promotional,p.Description,p.Dital,p.CreateBy,p.CreateDate,p.UpdateBy,p.UpdateDate,p.giong,p.mausac,p.cannang,p.size,p.ViewCount from product p INNER JOIN product_from_cate pfc on p.productId = pfc.product_id where pfc.cate_id = 3;";
         List<Product> list = JDBIConnector.get().withHandle(handle -> {
             return handle.createQuery(query)
                     .mapToBean(Product.class).stream().collect(Collectors.toList());
@@ -362,7 +362,7 @@ public class ProductDAO {
 
     public List<Product> getNext9Product(int amount, String category, String price, String size, String order_by) {
 
-        String query = "select distinct p.productId,p.ProductName,p.`Status`,p.Image,p.Price,p.Promotional,p.Quantity,p.Warranty,p.promotional,p.Description,p.Dital,p.CreateBy,p.CreateDate,p.UpdateBy,p.UpdateDate,p.giong,p.mausac,p.cannang,p.size,p.ViewCount from product p INNER JOIN product_from_cate pfc on p.productId = pfc.product_id \n" +
+        String query = "select distinct p.productId,p.ProductName,p.`Status`,p.Image,p.Price,p.PromotionalPrice,p.Quantity,p.Warranty,p.promotional,p.Description,p.Dital,p.CreateBy,p.CreateDate,p.UpdateBy,p.UpdateDate,p.giong,p.mausac,p.cannang,p.size,p.ViewCount from product p INNER JOIN product_from_cate pfc on p.productId = pfc.product_id \n" +
                 "WHERE p.`Status` = 1 ";
         if (category != null) {
             if (!category.equals("all")) {
@@ -441,7 +441,7 @@ public class ProductDAO {
                             "ON o.ProductID = p.productId\n" +
                             "GROUP BY p.ProductName, p.PromotionalPrice, p.Image, p.productId, p.Price\n" +
 //                            "ORDER BY SUM(o.Quantity) DESC\n" +
-                            "limit 8;\n")
+                            "limit 8 \n")
                     .mapToBean(Product.class).stream().collect(Collectors.toList());
         });
         return list;
@@ -496,8 +496,20 @@ public class ProductDAO {
     }
 
     public List<Product> listProductSale() {
-        return JDBIConnector.get().withHandle(handle -> handle.createQuery("SELECT p.productId,p.ProductName,p.`Status`,p.Image,p.Price,p.Promotional,p.Quantity,p.Warranty,p.promotional,p.Description,p.Dital,p.CreateBy,p.CreateDate,p.UpdateBy,p.UpdateDate,p.giong,p.mausac,p.cannang,p.size,p.ViewCount FROM product p WHERE `Status`=1 AND Promotional = 1")
-                .mapToBean(Product.class).stream().collect(Collectors.toList()));
+        return JDBIConnector.get().withHandle(handle -> {
+            // Câu truy vấn SQL với cột `Promotional` chỉ xuất hiện một lần
+            String query = "SELECT p.productId, p.ProductName, p.Status, p.Image, p.Price, p.Promotional, p.Quantity, " +
+                    "p.Warranty, p.Description, p.Dital, p.CreateBy, p.CreateDate, p.UpdateBy, p.UpdateDate, " +
+                    "p.giong, p.mausac, p.cannang, p.size, p.ViewCount " +
+                    "FROM product p " +
+                    "WHERE p.Status = 1 AND p.Promotional = 1";
+
+            // Thực thi câu truy vấn và ánh xạ kết quả vào danh sách các đối tượng `Product`
+            return handle.createQuery(query)
+                    .mapToBean(Product.class) // Ánh xạ kết quả thành các đối tượng `Product`
+                    .stream()
+                    .collect(Collectors.toList());
+        });
     }
 
     public List<Product> listRelateTo(String id) {

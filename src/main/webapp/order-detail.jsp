@@ -5,13 +5,7 @@
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="vn.edu.hcmuaf.fit.beans.UserAccount" %>
-<%@ page import="vn.edu.hcmuaf.fit.services.ProductService" %><%--
-  Created by IntelliJ IDEA.
-  User: Nguyen Ngoc Huy
-  Date: 1/2/2023
-  Time: 12:46 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="vn.edu.hcmuaf.fit.services.ProductService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -324,7 +318,7 @@
 
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg"
-         style="background-image: url(&quot;img/breadcrumb.jpg&quot;);">
+         style="background-image: url(img/breadcrumb.jpg);">
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
@@ -386,6 +380,9 @@
             <div class="checkout__order__total">Tổng tiền <span id="tongtien"></span></div>
             <%if(order.getStatus()==0){%>
                 <div class="site-btn" style="background-color: red;">Đã hủy</div>
+                <div style="margin-top: 10px; color: #fff;">
+                  Đơn hàng bị hủy do chữ ký không hợp lệ hoặc thông tin hóa đơn đã bị thay đổi.
+                </div>
             <%}else {
               if (order.getDelivered()==0){%>
                     <a href="UpdateOrderSatus?orderId=<%=order.getOrderID()%>" class="site-btn" style="background-color: red;">Hủy đơn</a>

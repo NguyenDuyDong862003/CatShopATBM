@@ -4,13 +4,6 @@
 <%@ page import="vn.edu.hcmuaf.fit.beans.Orders" %>
 <%@ page import="vn.edu.hcmuaf.fit.services.OrderService" %>
 <%@ page import="java.util.List" %>
-<%--
-Created by IntelliJ IDEA.
-  User: Nguyen Ngoc Huy
-  Date: 1/1/2023
-  Time: 9:07 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -23,8 +16,6 @@ Created by IntelliJ IDEA.
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Pet Shop</title>
 
-        <!-- Google Font -->
-        <!-- <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet"> -->
         <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;display=swap"
               rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -42,7 +33,6 @@ Created by IntelliJ IDEA.
         <link rel="stylesheet" href="css/style.css" type="text/css">
         <style type="text/css">@font-face {
             font-family: Roboto;
-            src: url("chrome-extension://mcgbeeipkmelnpldkobichboakdfaeon/css/Roboto-Regular.ttf");
         }</style>
     </head>
     <style>
@@ -330,7 +320,7 @@ Created by IntelliJ IDEA.
 
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg"
-         style="background-image: url(&quot;img/breadcrumb.jpg&quot;);">
+         style="background-image: url(img/breadcrumb.jpg);">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
