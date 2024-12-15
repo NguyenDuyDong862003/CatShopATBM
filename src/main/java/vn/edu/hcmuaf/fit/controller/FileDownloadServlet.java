@@ -16,13 +16,13 @@ public class FileDownloadServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext context = getServletContext();
-        String fpath = request.getServletContext().getRealPath("/") +File.separator + "tool" + File.separator + "Tool cuoi ky.zip";
+        String fpath = request.getServletContext().getRealPath("/") +File.separator + "tool" + File.separator + "Petshop_website_final_war.jar";
         System.out.println(fpath);
         Path path = Paths.get(fpath);
         byte[] data = Files.readAllBytes(path);
         // Thiết lập thông tin trả về
         response.setContentType("application/octet-stream");
-        response.setHeader("Content-disposition", "attachment; filename=Tool cuoi ky.zip");
+        response.setHeader("Content-disposition", "attachment; filename=Petshop_website_final_war.jar");
         response.setContentLength(data.length);
         InputStream inputStream = new BufferedInputStream(new ByteArrayInputStream(data));
         // Ghi file ra response outputstream.
