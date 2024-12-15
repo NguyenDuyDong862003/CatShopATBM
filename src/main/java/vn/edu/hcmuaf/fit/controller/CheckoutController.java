@@ -4,18 +4,11 @@ import vn.edu.hcmuaf.fit.beans.Cart;
 import vn.edu.hcmuaf.fit.beans.Product;
 import vn.edu.hcmuaf.fit.beans.UserAccount;
 import vn.edu.hcmuaf.fit.dao.KeyDAO;
-import vn.edu.hcmuaf.fit.dao.ProductDAO;
-import vn.edu.hcmuaf.fit.services.LogService;
-import vn.edu.hcmuaf.fit.services.OrderService;
-import vn.edu.hcmuaf.fit.services.ProductService;
 import vn.edu.hcmuaf.fit.tool.Hash;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 @WebServlet(name = "CheckoutController", value = "/CheckoutController")
@@ -24,7 +17,6 @@ public class CheckoutController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
