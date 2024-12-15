@@ -5,7 +5,7 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="footer__about">
                     <div class="footer__about__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                        <a href="./index.html"><img src="img/petshoplogo.jpg" alt=""></a>
                     </div>
                     <ul>
                         <li>Địa chỉ: TP.HCM, Việt Nam</li>
