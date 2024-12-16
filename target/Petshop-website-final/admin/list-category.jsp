@@ -132,7 +132,7 @@
         <div class="m-header">
             <a href="index.jsp" class="b-brand">
                 <!-- ========   change your logo hear   ============ -->
-                <img src="assets/images/logo.png" alt="" class="logo logo-lg">
+                <img src="assets/images/petshoplogo.jpg" alt="" class="logo logo-lg">
                 <img src="assets/images/logo-sm.svg" alt="" class="logo logo-sm">
             </a>
         </div>

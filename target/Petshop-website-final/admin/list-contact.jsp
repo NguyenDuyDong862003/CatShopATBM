@@ -130,7 +130,7 @@
         <div class="m-header">
             <a href="index.jsp" class="b-brand">
                 <!-- ========   change your logo hear   ============ -->
-                <img src="assets/images/logo.png" alt="" class="logo logo-lg">
+                <img src="assets/images/petshoplogo.jpg" alt="" class="logo logo-lg">
                 <img src="assets/images/logo-sm.svg" alt="" class="logo logo-sm">
             </a>
         </div>
@@ -358,7 +358,7 @@
                                     <td class="last-seen align-middle white-space-nowrap text-700 text-end">
                                         <div id="reply" class="btn_2 edit btn btn-primary" data-toggle="modal"
                                              data-target="#contact-dt-<%=c.getId()%>"
-                                             style="background-color: #00bfff; color: white">Trả lời
+                                             style="background-color: #FBDEA4; color: white">Trả lời
                                         </div>
                                     </td>
                                     <%}%>

@@ -167,7 +167,6 @@ public class DSA {
         return keyFactory.generatePrivate(keySpec);
     }
 
-
     public PublicKey convertStringToPublicKey(String publicKeyString) throws Exception {
         byte[] keyBytes = Base64.getDecoder().decode(publicKeyString);
 

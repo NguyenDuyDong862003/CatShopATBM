@@ -72,7 +72,7 @@
             color: #293240;
             text-align: left;
             list-style: none;
-            background-color: #00BFFF;
+            background-color: #FBDEA4;
             background-clip: padding-box;
             border: 0 solid rgba(0, 0, 0, 0.15);
             border-radius: 4px;
@@ -97,13 +97,13 @@
         }
 
         .dropdown-item:hover, .dropdown-item:focus {
-            color: #00BFFF;
+            color: #FBDEA4;
             text-decoration: none;
             background-color: #e3e1fc;
         }
 
         .dropdown-item.active, .dropdown-item:active {
-            color: #00BFFF;
+            color: #FBDEA4;
             text-decoration: none;
             background-color: #e3e1fc;
         }
@@ -185,7 +185,7 @@
         }
 
         .input-file::before {
-            background: #00BFFF;
+            background: #FBDEA4;
             border-radius: 50px;
             border: none;
             color: #fff;
@@ -223,7 +223,7 @@
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
     <div class="humberger__menu__logo">
-        <a href="#"><img src="img/logo.png" alt=""></a>
+        <a href="#"><img src="img/petshoplogo.jpg" alt=""></a>
     </div>
     <div class="humberger__menu__cart">
         <ul>
@@ -319,8 +319,8 @@
 <!-- Hero Section End -->
 
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg"
-         style="background-image: url(img/breadcrumb.jpg);">
+<section class="breadcrumb-section set-bg" data-setbg="img/1734258996071.png"
+         style="background-image: url(img/1734258996071.png);">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -340,7 +340,7 @@
         <div class="row">
             <div class="col-md-8 checkout__order" style="margin: auto;">
                 <%if(orders.size()==0){%>
-                <p>Bạn chưa có đơn hàng, Nhanh tay đặt hàng nào!</p>
+                    <p>Bạn chưa có đơn hàng, Nhanh tay đặt hàng nào!</p>
                 <%}else {%>
                 <table class="table table-sm fs--1 mb-0">
                     <thead>
@@ -371,7 +371,7 @@
                             <p style=" color: red" >Đã hủy</p>
                             <%}else {
                                 if (od.getDelivered()==0){%>
-                            <p style=" color: #00BFFF" >Đang xử lý</p>
+                            <p style=" color: #FBDEA4" >Đang xử lý</p>
                             <%}else {%>
                             <p style=" color: #22ff00" >Hoàn thành</p>
                             <% }

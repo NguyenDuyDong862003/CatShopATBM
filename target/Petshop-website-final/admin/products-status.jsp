@@ -102,7 +102,7 @@
         <div class="m-header">
             <a href="index.jsp" class="b-brand">
                 <!-- ========   change your logo hear   ============ -->
-                <img src="assets/images/logo.png" alt="" class="logo logo-lg">
+                <img src="assets/images/petshoplogo.jpg" alt="" class="logo logo-lg">
                 <img src="assets/images/logo-sm.svg" alt="" class="logo logo-sm">
             </a>
         </div>
@@ -277,10 +277,12 @@
                                 <% NumberFormat format = NumberFormat.getInstance(new Locale("vn", "VN"));
                                     DSA dsa = new DSA();
                                 %>
+                                <%-- Lấy danh sách đơn hàng đã thanh toán --%>
                                 <%
                                     List<Orders> listod = OrderService.getInstance().ordersList();
                                     for (Orders od : listod) {
                                 %>
+                                <%-- Thể hiện thông tin đơn hàng ở đây --%>
                                 <form action="" method="post">
                                     <tr>
                                         <td scope="row"><%=od.getOrderID()%>
@@ -292,16 +294,16 @@
                                         <td><%=od.getOrderDate()%>
                                         </td>
                                         <td>
+
                                             <%if (od.getStatus() == 0) {%>
                                             <div style="color: red; font-weight: bold">Đã hủy</div>
                                             <%} else {%>
                                             <%if (od.getDelivered() == 0) {%>
-                                            <div style="color: #00BFFF; font-weight: bold">Đang xử lý</div>
+                                            <div style="color: #FBDEA4; font-weight: bold">Đang xử lý</div>
                                             <%} else {%>
                                             <div style="color: #35ff00; font-weight: bold">Hoàn thành</div>
                                             <%}%>
                                             <%}%>
-
                                         </td>
                                         <%if (od.getDeliveryDate() == null) {%>
                                         <td>Chưa giao</td>
@@ -309,10 +311,9 @@
                                         <td><%=od.getDeliveryDate()%>
                                         </td>
                                         <%}%>
-
                                         <td>
                                             <%if (od.getVerify() == 0) {%>
-                                            <div style="color: #00BFFF; font-weight: bold">Chưa xác thực</div>
+                                            <div style="color: #FBDEA4; font-weight: bold">Chưa xác thực</div>
                                             <%} else {
                                                 String inforOrder = OrderService.getInstance().createHashMessageWithOrder(od);
                                                 PublicKey publicKey = new KeyDAO().getPublicKey(od.getCustomerID(), od.getOrderDate());
