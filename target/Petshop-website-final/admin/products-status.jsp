@@ -277,10 +277,12 @@
                                 <% NumberFormat format = NumberFormat.getInstance(new Locale("vn", "VN"));
                                     DSA dsa = new DSA();
                                 %>
+                                <%-- Lấy danh sách đơn hàng đã thanh toán --%>
                                 <%
                                     List<Orders> listod = OrderService.getInstance().ordersList();
                                     for (Orders od : listod) {
                                 %>
+                                <%-- Thể hiện thông tin đơn hàng ở đây --%>
                                 <form action="" method="post">
                                     <tr>
                                         <td scope="row"><%=od.getOrderID()%>
@@ -292,6 +294,7 @@
                                         <td><%=od.getOrderDate()%>
                                         </td>
                                         <td>
+
                                             <%if (od.getStatus() == 0) {%>
                                             <div style="color: red; font-weight: bold">Đã hủy</div>
                                             <%} else {%>
