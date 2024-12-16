@@ -35,7 +35,7 @@
     }
 
     .profile-button {
-      background: #00BFFF;
+      background: #FBDEA4;
       box-shadow: none;
       border: none
     }
@@ -45,7 +45,7 @@
     }
 
     .profile-button:focus {
-      background: #00BFFF;
+      background: #FBDEA4;
       box-shadow: none
     }
 
@@ -55,7 +55,7 @@
     }
 
     .back:hover {
-      color: #00BFFF;
+      color: #FBDEA4;
       cursor: pointer
     }
 
@@ -110,7 +110,7 @@
 
     }
     .input-file::before {
-      background: #00BFFF;
+      background: #FBDEA4;
       border-radius: 50px;
       border: none;
       color: #fff;
@@ -131,7 +131,7 @@
 <!-- [ Mobile header ] start -->
 <div class="pc-mob-header pc-header">
   <div class="pcm-logo">
-    <img src="assets/images/logo.png" alt="" class="logo logo-lg">
+    <img src="assets/images/petshoplogo.jpg" alt="" class="logo logo-lg">
   </div>
   <div class="pcm-toolbar">
     <a href="#!" class="pc-head-link" id="mobile-collapse">
@@ -157,7 +157,7 @@
     <div class="m-header">
       <a href="index.jsp" class="b-brand">
         <!-- ========   change your logo hear   ============ -->
-        <img src="assets/images/logo.png" alt="" class="logo logo-lg">
+        <img src="assets/images/petshoplogo.jpg" alt="" class="logo logo-lg">
         <img src="assets/images/logo-sm.svg" alt="" class="logo logo-sm">
       </a>
     </div>

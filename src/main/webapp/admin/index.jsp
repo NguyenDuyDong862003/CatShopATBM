@@ -63,7 +63,7 @@
 <!-- [ Mobile header ] start -->
 <div class="pc-mob-header pc-header">
     <div class="pcm-logo">
-        <img src="assets/images/logo.png" alt="" class="logo logo-lg">
+        <img src="assets/images/petshoplogo.jpg" alt="" class="logo logo-lg">
     </div>
 
     <%--    <div class="pcm-toolbar">--%>
@@ -90,7 +90,7 @@
 	<!-- [ Mobile header ] start -->
 	<div class="pc-mob-header pc-header">
 		<div class="pcm-logo">
-			<img src="assets/images/logo.png" alt="" class="logo logo-lg">
+			<img src="assets/images/petshoplogo.jpg" alt="" class="logo logo-lg">
 		</div>
 		<div class="pcm-toolbar">
 			<a href="#!" class="pc-head-link" id="mobile-collapse">
@@ -129,7 +129,7 @@
         <div class="m-header">
             <a href="index.jsp" class="b-brand">
                 <!-- ========   change your logo hear   ============ -->
-                <img src="assets/images/logo.png" alt="" class="logo logo-lg">
+                <img src="assets/images/petshoplogo.jpg" alt="" class="logo logo-lg">
                 <img src="assets/images/logo-sm.svg" alt="" class="logo logo-sm">
             </a>
         </div>
@@ -358,7 +358,7 @@
                                 <table class="table table-hover m-b-0">
                                     <thead>
                                     <tr>
-                                        <th><i class="fa-solid fa-cart-shopping" style="color: #00bfff;"></i></th>
+                                        <th><i class="fa-solid fa-cart-shopping" style="color: #FBDEA4;"></i></th>
                                         <th>Mã đơn hàng</th>
                                         <th>Mã khách hàng</th>
                                         <th>Ngày đặt</th>
@@ -367,7 +367,7 @@
                                     <tbody>
                                     <% for ( Orders o : Last5Order) {%>
                                     <tr>
-                                        <td><i class="fa-solid fa-cart-shopping" style="color: #00bfff;"></i></td>
+                                        <td><i class="fa-solid fa-cart-shopping" style="color: #FBDEA4;"></i></td>
                                         <td><%=o.getOrderID()%></td>
                                         <td><%=o.getCustomerID()%></td>
                                         <td>

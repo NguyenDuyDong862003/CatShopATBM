@@ -31,7 +31,7 @@
             <div style="color: red; font-weight: bold">Đã hủy</div>
             <%} else {%>
             <%if (od.getDelivered() == 0) {%>
-            <div style="color: #00BFFF; font-weight: bold">Đang xử lý</div>
+            <div style="color: #FBDEA4; font-weight: bold">Đang xử lý</div>
             <%} else {%>
             <div style="color: #35ff00; font-weight: bold">Hoàn thành</div>
             <%}%>
@@ -46,7 +46,7 @@
         <%}%>
         <td>
             <%if (od.getVerify() == 0) {%>
-            <div style="color: #00BFFF; font-weight: bold">Chưa xác thực</div>
+            <div style="color: #FBDEA4; font-weight: bold">Chưa xác thực</div>
             <%} else {
                 String inforOrder = OrderService.getInstance().createHashMessageWithOrder(od);
                 PublicKey publicKey = new KeyDAO().getPublicKey(od.getCustomerID(), od.getOrderDate());
