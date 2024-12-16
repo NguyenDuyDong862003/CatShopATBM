@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <style type="text/css">@font-face {
       font-family: Roboto;
-      src: url("chrome-extension://mcgbeeipkmelnpldkobichboakdfaeon/css/Roboto-Regular.ttf");
+      /*src: url("chrome-extension://mcgbeeipkmelnpldkobichboakdfaeon/css/Roboto-Regular.ttf");*/
     }</style>
   </head>
   <style>

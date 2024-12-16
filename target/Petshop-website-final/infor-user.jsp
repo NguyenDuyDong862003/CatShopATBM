@@ -193,6 +193,7 @@
             font-weight: 700;
             transition: all 0.3s;
         }
+
         #myTable {
             display: none;
             position: fixed;
@@ -207,10 +208,12 @@
             border: 1px black;
             width: 380px;
         }
+
         #myTable label {
             display: inline-block;
             width: 100px;
         }
+
         .overlayT {
             position: fixed;
             top: 0;
@@ -223,15 +226,18 @@
             z-index: 0;
             transition: opacity 0.5s ease;
         }
+
         .overlayT.show {
             opacity: 1;
             visibility: visible;
         }
+
         select.pdw {
             min-width: 200px;
             height: 30px;
             border-radius: 4px;
         }
+
         .bt1 {
             background-color: #007bff;
             border-radius: 5px;
@@ -242,7 +248,8 @@
         }
 
         .bt2 {
-            background-color: #007bff;
+            /*background-color: #007bff;*/
+            background-color: #0b5ed7;
             border-radius: 5px;
             width: 90px;
             padding: 7px;
@@ -251,6 +258,23 @@
             color: white;
 
         }
+
+        #myTablePass {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            /*background-image: url(img/breadcrumb.jpg);*/
+            /*background-position: top right;*/
+            background-color: #0d95e8;
+            z-index: 1;
+            border-radius: 10px;
+            border: 1px black;
+            width: 380px;
+        }
+
         #myTableK {
             display: none;
             position: fixed;
@@ -258,13 +282,15 @@
             left: 50%;
             transform: translate(-50%, -50%);
             padding: 20px;
-            background-image: url(img/breadcrumb.jpg);
-            background-position: top right;
+            /*background-image: url(img/breadcrumb.jpg);*/
+            /*background-position: top right;*/
+            background-color: #0d95e8;
             z-index: 1;
             border-radius: 10px;
             border: 1px black;
             width: 380px;
         }
+
         #myTablerb {
             display: none;
             position: fixed;
@@ -298,6 +324,7 @@
             opacity: 1;
             visibility: visible;
         }
+
         #myTableTK {
             display: none;
             position: fixed;
@@ -312,12 +339,19 @@
             border: 1px black;
             width: 380px;
         }
+
         #myTable label {
             display: inline-block;
             width: 100px;
         }
+
         .button-container {
             display: flex;
+        }
+
+        #copyIcon {
+            font-size: 1.5em;
+            cursor: pointer;
         }
     </style>
 
@@ -459,11 +493,11 @@
 <!-- Breadcrumb Section End -->
 <%
     UserAccount user = (UserAccount) request.getSession().getAttribute("user");
-    boolean isValidKey=true;
+    boolean isValidKey = true;
     if (user == null) {
         response.sendRedirect("login.jsp");
-    }else {
-        isValidKey=new KeyDAO().isValidKey(user.getId());
+    } else {
+        isValidKey = new KeyDAO().isValidKey(user.getId());
     }
 
 %>
@@ -500,40 +534,68 @@
                     <input type="text" id="deletedFile" value="" style="display: none">
                     <span class="font-weight-bold"><%=user.getName()%></span>
                     <span class="text-black-50"><%=user.getEmail()%></span><span> </span>
-                    <%--   20130252-Trần Nhựt Hào     --%>
-                    <%if(isValidKey){%>
+
+                    <%if (isValidKey) {%>
                     <span class="font-weight-bold">Đã xác nhận khóa (*)</span>
-                    <span class="font-weight-bold" style="color: red; background-color: yellow;" onclick="showTablerb()"> Báo cáo khóa đã bị lộ (*)</span>
+                    <span class="font-weight-bold" style="color: red; background-color: yellow;"
+                    <%--                                              onclick="showTablerb()"> Báo cáo khóa đã bị lộ (*)</span>--%>
+                          onclick="showTablePass()"> Báo cáo khóa đã bị lộ (*)</span>
+
+
                     <div id="myTablerb">
-                        <label style="text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white">Xác nhận khóa của bạn đã bị lộ</label>
-                        <div id="errorrb" style="text-align: center; color: red"></div> <br>
+                        <label style="text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white">Mật
+                            khẩu chính xác, bạn có thật sự muốn báo mất khóa?</label>
+                        <div id="errorrb" style="text-align: center; color: red"></div>
+                        <br>
                         <div onclick="hideTablerb()" class="bt2">Xác nhận</div>
                     </div>
-                    <%}else {%>
+                    <div id="myTablePass">
+                        <span class="font-weight-bold">Vui lòng xác nhận mật khẩu</span>
+                        <br>
+                        <br>
+                        <input type="password" id="passwordInput" class="form-control">
+                        <br>
+                        <div onclick="hideTablePass()" class="bt2">Hủy</div>
+                        <div onclick="checkUsernamePassword()" class="bt2">Xác nhận</div>
+                    </div>
+                    <%} else {%>
                     <span class="font-weight-bold" style="color: red">Vui lòng xác nhận khóa (*)</span>
                     <div class="button-container">
-                        <div class="bt1" onclick="showTableK()" >Xác nhận</div>
-                        <div class="bt1" onclick="createKey()" >Tạo Khóa</div>
+<%--                        <div class="bt1" onclick="showTableK()">Upload khóa công khai mới</div>--%>
+                        <div class="bt1" onclick="createKey()">Tạo Khóa</div>
                     </div>
+
                     <div id="myTableTK">
-                        <label style="text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white">Khóa riêng tư (dùng để ký đơn hàng)</label>
-                        <input type="text" id="privateKey"><br>
+                        <label style="text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white">Đây
+                            là private key mà server tạo ra cho bạn, server đã lưu lại public key rồi</label>
+                        <div>
+                            <input type="text" id="privateKey">
+                            <span id="copyIcon" onclick="copyToClipboard()">📋</span>
+                        </div>
                         <label>Vui lòng giữ bảo mật.</label> <br>
-                        <div id="errorTK" style="text-align: center; color: red"></div> <br>
+                        <div id="errorTK" style="text-align: center; color: red"></div>
+                        <br>
                         <div onclick="hideTableTK()" class="bt2">Đóng</div>
                     </div>
                     <div id="myTableK">
-                        <label style="text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white">Khóa công khai</label>
+                        <label style="text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white">Upload
+                            new public key</label>
                         <input type="text" id="publicKey"><br>
-                        <div id="errorK" style="text-align: center; color: red"></div> <br>
+                        <p style="color: white;">(*) Hướng dẫn: Mở tool lên, ở phần "Tạo và lưu cặp khóa DSA" bấm nút
+                            "Gen new pair key", copy public key được tạo vào hộp input trên. Dùng nút lưu trên tool để
+                            lưu lại cặp khóa, và bạn phải tuyệt đối giữ kín private key.</p>
+                        <div id="errorK"
+                             style="text-align: center; color: white; font-size: 24px; font-weight: 900; -webkit-text-stroke: 1px red; "></div>
+                        <br>
                         <div onclick="hideTableK()" class="bt2">Hủy</div>
                         <div onclick="updateKey()" class="bt2">Cập nhật</div>
                     </div>
+
                     <%}%>
-                    <%--   20130252-Trần Nhựt Hào     --%>
+
                 </div>
             </div>
-            <div class="col-md-5 border-right">
+            <div class="col-md-9 border-right">
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="text-right">Thông tin tài khoản</h4>
@@ -570,13 +632,15 @@
                                                 placeholder="Nhập số điện thoại tại đây"
                                                 value="<%=user.getPhone()%>"></div>
 
-                        <div class="col-md-12"><label class="labels" style="padding-top: 10px; margin-bottom: 10px">Địa chỉ</label><input type="text" id="address"
-                                                                                                                                          class="form-control"
-                                                                                                                                          name="address"
-                                                                                                                                          placeholder="Chưa có địa chỉ"
-                                                                                                                                          value="<%=user.getAddress()%>"
-                                                                                                                                          readonly>
-                        </div> <br>
+                        <div class="col-md-12"><label class="labels" style="padding-top: 10px; margin-bottom: 10px">Địa
+                            chỉ</label><input type="text" id="address"
+                                              class="form-control"
+                                              name="address"
+                                              placeholder="Chưa có địa chỉ"
+                                              value="<%=user.getAddress()%>"
+                                              readonly>
+                        </div>
+                        <br>
                         <div class="col-md-12">
                             <div class="bt1" onclick="showTable()" style="margin-top: 10px">Chỉnh sửa địa chỉ</div>
                             <div id="myTable">
@@ -606,35 +670,35 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center experience"><span>Đổi mật khẩu</span>
-                    </div>
-                    <br>
-                    <div class="col-md-12"><label class="labels">Nhập mật khẩu mới</label><input type="password"
-                                                                                                 id="newpass"
-                                                                                                 class="form-control"
-                                                                                                 name="newpass"
-                                                                                                 placeholder="Nhập mật khẩu"
-                                                                                                 value="<%=user.getPass()%>">
-                    </div>
-                    <br>
-                    <div class="col-md-12"><label class="labels">Nhập lại mật khẩu</label><input type="password"
-                                                                                                 id="newpassconfirm"
-                                                                                                 class="form-control"
-                                                                                                 name="newpassconfirm"
-                                                                                                 placeholder="Nhập lại mật khẩu"
-                                                                                                 value="<%=user.getPass()%>">
-                    </div>
-                    <% String errorpass = (String) request.getAttribute("passError"); %>
-                    <p style="color: red; text-align: center; text-transform: none !important;padding-top: 5px; text-align: center"><%= errorpass == null ? "" : errorpass%>
-                    </p>
-                    <div class="mt-5 text-center">
-                        <button class="btn btn-primary profile-button" type="submit">Lưu thông tin</button>
-                    </div>
-                </div>
+            <%--            <div class="col-md-4">--%>
+            <%--                <div class="p-3 py-5">--%>
+            <%--                    <div class="d-flex justify-content-between align-items-center experience"><span>Đổi mật khẩu</span>--%>
+            <%--                    </div>--%>
+            <%--                    <br>--%>
+            <%--                    <div class="col-md-12"><label class="labels">Nhập mật khẩu mới</label><input type="password"--%>
+            <%--                                                                                                 id="newpass"--%>
+            <%--                                                                                                 class="form-control"--%>
+            <%--                                                                                                 name="newpass"--%>
+            <%--                                                                                                 placeholder="Nhập mật khẩu"--%>
+            <%--                                                                                                 value="<%=user.getPass()%>">--%>
+            <%--                    </div>--%>
+            <%--                    <br>--%>
+            <%--                    <div class="col-md-12"><label class="labels">Nhập lại mật khẩu</label><input type="password"--%>
+            <%--                                                                                                 id="newpassconfirm"--%>
+            <%--                                                                                                 class="form-control"--%>
+            <%--                                                                                                 name="newpassconfirm"--%>
+            <%--                                                                                                 placeholder="Nhập lại mật khẩu"--%>
+            <%--                                                                                                 value="<%=user.getPass()%>">--%>
+            <%--                    </div>--%>
+            <%--                    <% String errorpass = (String) request.getAttribute("passError"); %>--%>
+            <%--                    <p style="color: red; text-align: center; text-transform: none !important;padding-top: 5px; text-align: center"><%= errorpass == null ? "" : errorpass%>--%>
+            <%--                    </p>--%>
+            <%--                    <div class="mt-5 text-center">--%>
+            <%--                        <button class="btn btn-primary profile-button" type="submit">Lưu thông tin</button>--%>
+            <%--                    </div>--%>
+            <%--                </div>--%>
 
-            </div>
+            <%--            </div>--%>
         </div>
     </form>
 </div>
@@ -656,7 +720,81 @@
 <script src="admin/assets/js/plugins/bootstrap.min.js"></script>
 <script src="js/axios.min.js"></script>
 <script>
-    function updateKey() { //20130252-Trần Nhựt Hào
+    function checkUsernamePassword() {
+        var username = '<%=  user.getUsername() %>';
+        var pass = document.getElementById("passwordInput").value;
+        console.log(username, pass);
+
+        var xmlhttp = new XMLHttpRequest();
+
+        // URL của Servlet CheckUsernamePass
+        var url = "CheckUsernamePass";
+        var params = "username=" + encodeURIComponent(username) + "&password=" + encodeURIComponent(pass);
+
+        xmlhttp.open("POST", url, true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        // Xử lý khi yêu cầu được gửi đi và phản hồi nhận được
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                // Xử lý phản hồi từ Servlet
+                var response = JSON.parse(xmlhttp.responseText);
+                console.log(response);
+
+                // Kiểm tra kết quả từ phản hồi
+                if (response.result === "true") {
+                    // Username và password đúng, thực hiện hành động tiếp theo
+                    hideTablePass();
+                    showTablerb();
+                } else {
+                    // Sai username hoặc password
+                    // document.getElementById("errorLogin").innerText = "Sai tên đăng nhập hoặc mật khẩu!";
+                    alert("Sai mật khẩu");
+                }
+            }
+        };
+
+        // Gửi yêu cầu đến Servlet
+        xmlhttp.send(params);
+    }
+
+    function showTablePass() {
+        document.getElementById("myTablePass").style.display = "block";
+        document.getElementById("overlayT").classList.add("show");
+        document.getElementById("overlayT").addEventListener("click", hideTableOnClickOutsiderPass);
+    }
+
+    function hideTablePass() {
+        document.getElementById("myTablePass").style.display = "none";
+        document.getElementById("overlayT").classList.remove("show");
+        document.getElementById("overlayT").removeEventListener("click", hideTableOnClickOutsiderPass);
+        // reportKey();
+    }
+
+    function hideTableOnClickOutsiderPass(event) {
+        var myTablePass = document.getElementById("myTablePass");
+        // Kiểm tra xem phần tử được click có phải là myTablePass không
+        if (!myTablePass.contains(event.target)) {
+            hideTablePass();
+            window.location.reload();
+        }
+    }
+
+    function copyToClipboard() {
+        // Lấy giá trị từ input
+        var privateKeyInput = document.getElementById("privateKey");
+        privateKeyInput.select();
+        navigator.clipboard.writeText(privateKeyInput.value)
+            .then(function () {
+                var errorTK = document.getElementById("errorTK");
+                errorTK.innerHTML = "Đã sao chép vào clipboard!";
+            })
+            .catch(function (err) {
+                console.error('Failed to copy text: ', err);
+            });
+    }
+
+    function updateKey() {
         var publicKey = document.getElementById("publicKey").value;
         if (publicKey.trim() === "") {
             document.getElementById("errorK").innerText = "Khóa không được để trống";
@@ -665,7 +803,8 @@
             checkKey(publicKey);
         }
     }
-    function checkKey(publicKey){//20130252-Trần Nhựt Hào
+
+    function checkKey(publicKey) {
         var xmlhttp = new XMLHttpRequest();
 
         // Xác định phương thức và URL của servlet
@@ -695,19 +834,22 @@
         // Gửi yêu cầu đến servlet
         xmlhttp.send(params);
     }
-    function showTablerb(){//20130230-Trần trung đông
+
+    function showTablerb() {
         document.getElementById("myTablerb").style.display = "block";
         document.getElementById("overlayT").classList.add("show");
         document.getElementById("overlayT").addEventListener("click", hideTableOnClickOutsiderb);
     }
-    function hideTablerb() {//20130230-Trần trung đông
+
+    function hideTablerb() {
         document.getElementById("myTablerb").style.display = "none";
         document.getElementById("overlayT").classList.remove("show");
         document.getElementById("overlayT").removeEventListener("click", hideTableOnClickOutsiderb);
         window.location.reload();
         reportKey();
     }
-    function hideTableOnClickOutsiderb(event) {//20130230-Trần trung đông
+
+    function hideTableOnClickOutsiderb(event) {
         var myTablerb = document.getElementById("myTablerb");
         // Kiểm tra xem phần tử được click có phải là myTablerb không
         if (!myTablerb.contains(event.target)) {
@@ -715,7 +857,8 @@
             window.location.reload();
         }
     }
-    function reportKey() {//20130230-Trần trung đông
+
+    function reportKey() {
         // Tạo đối tượng XMLHttpRequest
         var xhr = new XMLHttpRequest();
 
@@ -735,12 +878,14 @@
         // Gửi yêu cầu
         xhr.send();
     }
-    function showTableK() {//20130252-Trần Nhựt Hào
+
+    function showTableK() {
         document.getElementById("myTableK").style.display = "block";
         document.getElementById("overlayT").classList.add("show");
         document.getElementById("overlayT").addEventListener("click", hideTableOnClickOutside);
     }
-    function hideTableOnClickOutside(event) {//20130252-Trần Nhựt Hào
+
+    function hideTableOnClickOutside(event) {
         var myTableK = document.getElementById("myTableK");
 
         // Kiểm tra xem phần tử được click có phải là myTableCK không
@@ -748,12 +893,14 @@
             hideTableK();
         }
     }
-    function hideTableK() {//20130252-Trần Nhựt Hào
+
+    function hideTableK() {
         document.getElementById("myTableK").style.display = "none";
         document.getElementById("overlayT").classList.remove("show");
         document.getElementById("overlayT").removeEventListener("click", hideTableOnClickOutside);
     }
-    function createKey(){//20130252-Trần Nhựt Hào
+
+    function createKey() {
         // Gửi yêu cầu AJAX đến Servlet
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
@@ -768,12 +915,14 @@
         xhr.open("GET", "CreateKeyController", true);
         xhr.send();
     }
-    function showTableTK() {//20130252-Trần Nhựt Hào
+
+    function showTableTK() {
         document.getElementById("myTableTK").style.display = "block";
         document.getElementById("overlayT").classList.add("show");
-        document.getElementById("overlayT").addEventListener("click", hideTableOnClickOutside);
+        document.getElementById("overlayT").addEventListener("click", hideTableOnClickOutsideTK);
     }
-    function hideTableOnClickOutsideTK(event) {//20130252-Trần Nhựt Hào
+
+    function hideTableOnClickOutsideTK(event) {
         var myTableTK = document.getElementById("myTableTK");
         // Kiểm tra xem phần tử được click có phải là myTableTK không
         if (!myTableTK.contains(event.target)) {
@@ -781,12 +930,14 @@
             window.location.reload();
         }
     }
-    function hideTableTK() {//20130252-Trần Nhựt Hào
+
+    function hideTableTK() {
         document.getElementById("myTableTK").style.display = "none";
         document.getElementById("overlayT").classList.remove("show");
         document.getElementById("overlayT").removeEventListener("click", hideTableOnClickOutsideTK);
         window.location.reload();
     }
+
     function reloadUpLoadFile() {
         $(".input-file").each(function () {
             $(this).on('change', function (e) {
@@ -913,7 +1064,7 @@
 </script>
 <script>
 
-    const EMAIL = "20130266@st.hcmuaf.edu.vn";
+    const EMAIL = "21130318@st.hcmuaf.edu.vn";
     const PASSWORD = "123456";
     const WARD = "90737";
     const DISTRICT = "3695";
@@ -927,7 +1078,7 @@
 
     var callProvince = (access_token) => {
         return axios.get(`http://140.238.54.136/api/province?token=${access_token}`).then((response) => {
-            renderDataProvince(response.data.original.data,"province");
+            renderDataProvince(response.data.original.data, "province");
         });
     }
 
@@ -954,7 +1105,7 @@
                     provinceID: $("#province").val()
                 }
             }).then((response) => {
-                renderDataDistrict(response.data.original.data,"district");
+                renderDataDistrict(response.data.original.data, "district");
             });
         }
     });
@@ -980,7 +1131,7 @@
                     districtID: $("#district").val()
                 }
             }).then((response) => {
-                renderDataWard(response.data.original.data,"ward");
+                renderDataWard(response.data.original.data, "ward");
             });
         }
         var renderDataWard = (array, select) => {
@@ -997,6 +1148,7 @@
         document.getElementById("overlayT").classList.add("show");
 
     }
+
     function hideTable() {
         document.getElementById("myTable").style.display = "none";
         document.getElementById("overlayT").classList.remove("show");
@@ -1004,15 +1156,15 @@
     }
 
     var soNha = document.getElementById("soNha").value;
+
     function validateInput() {
         if ($("#district").val() != "" && $("#province").val() != "" &&
             $("#ward").val() != "" && $("#soNha").val() != "") {
-            document.getElementById("address").value  = $("#soNha").val() + ", " + $("#ward option:selected").text() +
+            document.getElementById("address").value = $("#soNha").val() + ", " + $("#ward option:selected").text() +
                 ", " + $("#district option:selected").text() + ", " +
                 $("#province option:selected").text();
             hideTable();
-        }
-        else {
+        } else {
             document.getElementById('error').innerHTML = 'Vui lòng chọn đủ thông tin địa chỉ';
         }
     }

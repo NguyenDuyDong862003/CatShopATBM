@@ -4,13 +4,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.Locale" %>
-<%@ page import="vn.edu.hcmuaf.fit.beans.Wishlist" %><%--
-  Created by IntelliJ IDEA.
-  User: Nguyen Ngoc Huy
-  Date: 12/16/2022
-  Time: 3:33 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="vn.edu.hcmuaf.fit.beans.Wishlist" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%UserAccount user = (UserAccount) request.getSession().getAttribute("user");%>
 <% List<Product> list = (List<Product>) request.getAttribute("listnext9");

@@ -1,12 +1,6 @@
 <%@ page import="vn.edu.hcmuaf.fit.beans.BlogComment" %>
 <%@ page import="vn.edu.hcmuaf.fit.beans.UserAccount" %>
-<%@ page import="vn.edu.hcmuaf.fit.services.UserService" %><%--
-  Created by IntelliJ IDEA.
-  User: ADMIN
-  Date: 02/01/2023
-  Time: 9:26 CH
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="vn.edu.hcmuaf.fit.services.UserService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%BlogComment cmt = (BlogComment) request.getAttribute("cmt");%>
 <div id="cmt-section<%=cmt.getID()%>">
