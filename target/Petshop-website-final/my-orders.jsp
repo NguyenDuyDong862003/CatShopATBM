@@ -340,7 +340,7 @@
         <div class="row">
             <div class="col-md-8 checkout__order" style="margin: auto;">
                 <%if(orders.size()==0){%>
-                    <p>Bạn chưa có đơn hàng, Nhanh tay đặt hàng nào!</p>
+                <p>Bạn chưa có đơn hàng, Nhanh tay đặt hàng nào!</p>
                 <%}else {%>
                 <table class="table table-sm fs--1 mb-0">
                     <thead>
