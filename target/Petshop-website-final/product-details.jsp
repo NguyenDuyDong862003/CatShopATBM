@@ -388,7 +388,7 @@
                     <%} else {%>
                     <div class="product__details__price"><%=format.format(product.getPrice())%>đ</div>
                     <%
-                            }
+                        }
                     %>
                     <p><%=product.getViewCount() != 0 ? product.getViewCount() : 0%> lượt xem</p>
                     <p><%=product.getDescription()%>
@@ -396,7 +396,7 @@
 
                     <%if (ProductService.getInstance().getQuantityProduct(product.getProductId()) < 1) {
                         Product p = new ProductDAO().getProductDetail(product.getProductId());%>
-<%--                    <div class="product__details__price">Tạm hết hàng!</div>--%>
+                    <%--                    <div class="product__details__price">Tạm hết hàng!</div>--%>
 
                     <a class="primary-btn" style="background-color: red; color: white">Tạm hết hàng!</a>
                     <a href="#" class="heart-icon add-wishlist" id="addWishlist-<%=p.getProductId()%>"><span

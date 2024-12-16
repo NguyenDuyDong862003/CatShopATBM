@@ -333,7 +333,7 @@
                                             <%if (od.getVerify() == 0) {%>
                                             <a style="background-color:#35ff00;" class="btn_2 edit btn btn-primary verify"
                                                type="submit"
-<%--                                               href="/Petshop_website_final_war/VerifyOrderController?orderId=<%=od.getOrderID()%>"--%>
+                                            <%--                                               href="/Petshop_website_final_war/VerifyOrderController?orderId=<%=od.getOrderID()%>"--%>
                                                id="orderId=<%=od.getOrderID()%>">
                                                 Xác thực</a>
                                             <%} else {
@@ -341,28 +341,16 @@
                                                 PublicKey publicKey = new KeyDAO().getPublicKey(od.getCustomerID(), od.getOrderDate());
                                                 String hash = new Hash().hashString(inforOrder);
                                                 if(dsa.verify(hash, od.getHashMessage(), dsa.convertStringToPublicKey(publicKey.getPublicKey()))) {%>
-<%--                                            <div style="color: #35ff00; font-weight: bold">Đã xác thực</div>--%>
+                                            <%--                                            <div style="color: #35ff00; font-weight: bold">Đã xác thực</div>--%>
                                             <%} else {%>
                                             <a style="background-color:red;" class="btn_2 edit btn btn-primary cancel-order"
-                                                type="submit"
-                                                <%--href="/Petshop_website_final_war/CancelOrderController?orderId=<%=od.getOrderID()%>"--%>
-                                                id="orderId=<%=od.getOrderID()%>">
+                                               type="submit"
+                                            <%--href="/Petshop_website_final_war/CancelOrderController?orderId=<%=od.getOrderID()%>"--%>
+                                               id="orderId=<%=od.getOrderID()%>">
                                                 Hủy đơn</a>
                                             <%}
                                             }%>
-
-<%--                                            <%} else if (od.getVerify() == 1) {%>--%>
-<%--                                            &lt;%&ndash;                                                        <a style="background-color:#35ff00;" class="btn_2 edit btn btn-primary" type="submit" href="order-detail-ad.jsp?orderId=<%=od.getOrderID()%>">&ndash;%&gt;--%>
-<%--                                            &lt;%&ndash;                                                            Đã xác thực</a>&ndash;%&gt;--%>
-<%--                                            <%} else {%>--%>
-<%--                                            <a style="background-color:red;" class="btn_2 edit btn btn-primary cancel-order"--%>
-<%--                                               type="submit"--%>
-<%--&lt;%&ndash;                                               href="/Petshop_website_final_war/CancelOrderController?orderId=<%=od.getOrderID()%>"&ndash;%&gt;--%>
-<%--                                                id="orderId=<%=od.getOrderID()%>">--%>
-<%--                                                Hủy đơn</a>--%>
-<%--                                            <%}%>--%>
                                         </td>
-
 
                                     </tr>
                                 </form>
