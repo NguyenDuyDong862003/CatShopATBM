@@ -304,7 +304,7 @@
                     <tr>
                         <td id="amount" class="fs--1 align-middle ps-0 py-3"><p class="mb-0 text-1100 fw-bold"><%=i.getProductId()%></p></td>
                         <td class="customer align-middle white-space-nowrap pe-5"><a class="d-flex align-items-center" href="#!">
-                            <p class="mb-0 ms-3 text-1100 fw-bold"><img src="http://localhost:8080/Petshop_website_final_war/<%=i.getImage()%>" style="height: 60px; width: 60px; object-fit: cover"></p></a></td>
+                            <p class="mb-0 ms-3 text-1100 fw-bold"><img src="https://localhost:8443/Petshop_website_final_war/<%=i.getImage()%>" style="height: 60px; width: 60px; object-fit: cover"></p></a></td>
                         <td class="email align-middle white-space-nowrap pe-5"><%=i.getProductName()%></td>
                         <td class="total-orders align-middle white-space-nowrap fw-semi-bold"><%=i.getGiong()%></td>
                         <td class="total-spent align-middle white-space-nowrap fw-bold ps-3"><%=i.getPrice()%></td>

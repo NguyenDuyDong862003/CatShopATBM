@@ -498,7 +498,7 @@
                                         <input type="text" id="cusID" value="<%=user.getId()%>" style="display: none">
                                         <input type="text" id="pID" value="<%=product.getProductId()%>"
                                                style="display: none">
-                                        <img src="http://localhost:8080/Petshop_website_final_war/<%=UserService.getInstance().getUserDetail(user.getId()).getAvt()%>"
+                                        <img src="https://localhost:8443/Petshop_website_final_war/<%=UserService.getInstance().getUserDetail(user.getId()).getAvt()%>"
                                              width="45" height="45" class="user-img rounded-circle mr-2">
                                         <input type="text" id="content" name="content" placeholder="Viết bình luận..."
                                                style="padding-left: 5px;width: 560px;height: 45px;border-radius: 15px">
@@ -519,7 +519,7 @@
                                                         <div class="d-flex justify-content-between align-items-center">
 
                                                             <div class="user d-flex flex-row align-items-center">
-                                                                <img src="http://localhost:8080/Petshop_website_final_war/<%=UserService.getInstance().getUserDetail(cmt.getCustomerID()).getAvt()%>"
+                                                                <img src="https://localhost:8443/Petshop_website_final_war/<%=UserService.getInstance().getUserDetail(cmt.getCustomerID()).getAvt()%>"
                                                                      width="35" height="35"
                                                                      class="user-img rounded-circle mr-2">
 

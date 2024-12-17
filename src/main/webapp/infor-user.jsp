@@ -514,7 +514,7 @@
                         <div id="container<%=i%>">
                             <div class="avatar-wrapper">
                                 <img class="img-avt-review profile-pic"
-                                     src="http://localhost:8080/Petshop_website_final_war/<%=user.getAvt()%>"/>
+                                     src="https://localhost:8443/Petshop_website_final_war/<%=user.getAvt()%>"/>
                             </div>
                         </div>
                     </div>
@@ -1003,7 +1003,7 @@
                 error: function (jqXHR, textStatus, errorThrown) {
                     $("#container" + id).empty()
                     $("#container" + id).prepend(`<div class="avatar-wrapper">
-                                <img class="img-avt-review profile-pic" src="http://localhost:8080/Petshop_website_final_war/img/user/` + name + `" />
+                                <img class="img-avt-review profile-pic" src="https://localhost:8443/Petshop_website_final_war/img/user/` + name + `" />
                             </div>`)
                     let value = $("#deletedFile").val();
                     if (value.indexOf(name) !== -1) {

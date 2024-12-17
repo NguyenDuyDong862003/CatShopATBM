@@ -105,7 +105,7 @@ public class ProductDAO {
             handle.createUpdate("insert into product (productId, ProductName, Image, Price, Description, " +
                             "Dital, Quantity, CreateBy, CreateDate, giong, mausac, cannang, `Status`, PromotionalPrice,Promotional, size, ViewCount) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
                     .bind(1, name)
-                    .bind(2, "http://localhost:8080/Petshop_website_final_war/img/products/" + imgFile[0])
+                    .bind(2, "https://localhost:8443/Petshop_website_final_war/img/products/" + imgFile[0])
                     .bind(3, price)
                     .bind(4, description)
                     .bind(5, detail)
@@ -132,7 +132,7 @@ public class ProductDAO {
             for (int i = 1; i < imgFile.length; i++) {
                 handle.createUpdate("insert into product_img values (?,?)")
                         .bind(0, id)
-                        .bind(1,"http://localhost:8080/Petshop_website_final_war/img/products/" + imgFile[i])
+                        .bind(1,"https://localhost:8443/Petshop_website_final_war/img/products/" + imgFile[i])
                         .execute();
             }
             return true;
@@ -151,7 +151,7 @@ public class ProductDAO {
                             "Dital, Quantity, Warranty, CreateBy, CreateDate, giong, mausac, cannang, `Status`, PromotionalPrice,Promotional, size, ViewCount) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
                     .bind(0, id)
                     .bind(1, name)
-                    .bind(2, "http://localhost:8080/Petshop_website_final_war/img/products/" + imgFile[0])
+                    .bind(2, "https://localhost:8443/Petshop_website_final_war/img/products/" + imgFile[0])
                     .bind(3, price)
                     .bind(4, description)
                     .bind(5, detail)
@@ -175,7 +175,7 @@ public class ProductDAO {
             for (int i = 1; i < imgFile.length; i++) {
                 handle.createUpdate("insert into product_img values (?,?)")
                         .bind(0, id)
-                        .bind(1,"http://localhost:8080/Petshop_website_final_war/img/products/" + imgFile[i])
+                        .bind(1,"https://localhost:8443/Petshop_website_final_war/img/products/" + imgFile[i])
                         .execute();
             }
             return true;
@@ -193,7 +193,7 @@ public class ProductDAO {
                             "WHERE productId=?;\n")
                     .bind(0, name)
                     .bind(1, Integer.parseInt(status))
-                    .bind(2, "http://localhost:8080/Petshop_website_final_war/img/products/" + imgFile[0])
+                    .bind(2, "https://localhost:8443/Petshop_website_final_war/img/products/" + imgFile[0])
                     .bind(3, price)
                     .bind(4, quantity)
                     .bind(5, description)
@@ -233,7 +233,7 @@ public class ProductDAO {
             for (int i = 1; i < imgFile.length; i++) {
                 handle.createUpdate("INSERT INTO product_img VALUES(?, ?)")
                         .bind(0, id)
-                        .bind(1, "http://localhost:8080/Petshop_website_final_war/img/products/" + imgFile[i])
+                        .bind(1, "https://localhost:8443/Petshop_website_final_war/img/products/" + imgFile[i])
                         .execute();
             }
             return true;
@@ -249,7 +249,7 @@ public class ProductDAO {
                             "WHERE productId=?;\n")
                     .bind(0, name)
                     .bind(1, Integer.parseInt(status))
-                    .bind(2, "http://localhost:8080/Petshop_website_final_war/img/products/" + imgFile[0])
+                    .bind(2, "https://localhost:8443/Petshop_website_final_war/img/products/" + imgFile[0])
                     .bind(3, price)
                     .bind(4, quantity)
                     .bind(5, description)
@@ -285,7 +285,7 @@ public class ProductDAO {
             for (int i = 1; i < imgFile.length; i++) {
                 handle.createUpdate("INSERT INTO product_img VALUES(?, ?)")
                         .bind(0, id)
-                        .bind(1, "http://localhost:8080/Petshop_website_final_war/img/products/" + imgFile[i])
+                        .bind(1, "https://localhost:8443/Petshop_website_final_war/img/products/" + imgFile[i])
                         .execute();
             }
             return true;

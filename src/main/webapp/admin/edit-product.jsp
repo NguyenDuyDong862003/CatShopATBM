@@ -726,7 +726,7 @@
                     $(".image-container").css("display", "inline-flex");
                     $("#container" + id).removeClass("dz-message text-600")
                     $("#container" + id).prepend(`<div class="border bg-white rounded-3 d-flex flex-center position-relative me-2 mb-2 dz-image-preview" style="height:80px;width:80px;">
-                                                <img class="img-product-review dz-image" src="http://localhost:8080/Petshop_website_final_war/img/products/` + name + `">
+                                                <img class="img-product-review dz-image" src="https://localhost:8443/Petshop_website_final_war/img/products/` + name + `">
                                                 <div class="control">
                                                 <a id="remove` + id + `" class="dz-remove text-400 remove" href="" data-dz-remove="">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
